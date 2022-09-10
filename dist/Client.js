@@ -53,7 +53,7 @@ function createBot(options, providers) {
     else
         bot.gateway.start = function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                throw new Error('Gateway Provider has not been provided');
+                throw new Error('GatewayClientProviderOptions has not been provided');
             });
         }); };
     return bot;

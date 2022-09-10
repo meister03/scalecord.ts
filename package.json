@@ -2,7 +2,8 @@
     "name": "discord.ts",
     "version": "0.0.1",
     "description": "Di",
-    "main": "./dist/mod.js",
+    "main": "dist/mod.js",
+    "types": "dist/mod.d.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
