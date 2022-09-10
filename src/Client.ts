@@ -13,7 +13,7 @@ export function createBot(options: CreateBotOptions, providers?: Providers) {
         const gateway = providers.gateway.build({ token: options.token , bot});
         bot.gateway = gateway;
     }else bot.gateway.start = async () => {
-        throw new Error('Gateway Provider has not been provided');
+        throw new Error('GatewayClientProviderOptions has not been provided');
         //return undefined;
     };
     return bot;
