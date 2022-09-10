@@ -1,5 +1,5 @@
 {
-    "name": "discord.ts",
+    "name": "scalecord.ts",
     "version": "0.0.1",
     "description": "Powerful Discord API library based on Discordeno components, allowing vertical and horizontal scaling.",
     "main": "dist/mod.js",
@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/meister03/discord.ts.git"
+        "url": "git+https://github.com/meister03/scalecord.ts.git"
     },
     "publishConfig": {
         "access": "public"
@@ -17,6 +17,8 @@
     "keywords": [
         "discord",
         "discord.ts",
+        "scalecord",
+        "scalecord.ts",
         "cross-hosting",
         "standalone-gateway",
         "standalone-rest",
@@ -27,9 +29,9 @@
     "author": "meister03",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/meister03/discord.ts/issues"
+        "url": "https://github.com/meister03/scalecord.ts/issues"
     },
-    "homepage": "https://github.com/meister03/discord.ts/#readme",
+    "homepage": "https://github.com/meister03/scalecord.ts/#readme",
     "devDependencies": {
         "@types/express": "^4.17.13",
         "typescript": "^4.7.4"

@@ -1,8 +1,8 @@
-<p align="center"><a href="https://nodei.co/npm/discord.ts/"><img src="https://nodei.co/npm/discord.ts.png"></a></p>
-<p align="center"><img src="https://img.shields.io/npm/v/discord.ts"> <img src="https://img.shields.io/npm/dm/discord.ts?label=downloads"> <img src="https://img.shields.io/npm/l/discord.ts"> <img src="https://img.shields.io/github/repo-size/meister03/discord.ts">  <a href="https://discord.gg/YTdNBHh"><img src="https://discordapp.com/api/guilds/697129454761410600/widget.png" alt="Discord server"/></a></p>
+<p align="center"><a href="https://nodei.co/npm/scalecord.ts/"><img src="https://nodei.co/npm/scalecord.ts.png"></a></p>
+<p align="center"><img src="https://img.shields.io/npm/v/scalecord.ts"> <img src="https://img.shields.io/npm/dm/scalecord.ts?label=downloads"> <img src="https://img.shields.io/npm/l/scalecord.ts"> <img src="https://img.shields.io/github/repo-size/meister03/scalecord.ts">  <a href="https://discord.gg/YTdNBHh"><img src="https://discordapp.com/api/guilds/697129454761410600/widget.png" alt="Discord server"/></a></p>
 
 
-# Discord.ts
+# Scalecord.ts
 Powerful Discord API library based on Discordeno components, allowing vertical and horizontal scaling.
 
 ## Features
@@ -40,7 +40,7 @@ File: Server.js
 * Starts the Gateway Proxy, which will connect to the Discord Gateway and send the Discord Gateway Packets to the connected Machines.
 
 ```js
-import { GatewayServerProvider, RestServerProvider , Server} from 'discord.ts'; // change to lib import
+import { GatewayServerProvider, RestServerProvider , Server} from 'scalecord.ts'; // change to lib import
 import { GatewayIntents } from 'discordeno/types';
 import config from './config.json'
 const server = new Server({
@@ -70,7 +70,7 @@ File: Bot.js
 * Based on the amount of totalMachines provided in the Server.js file, that amount of Bot.js file has to be started. (Will be done soon by discord-hybrid-sharding)
 
 ```js
-import { RestClientProvider, createBot, GatewayClientProvider } from 'discord.ts';
+import { RestClientProvider, createBot, GatewayClientProvider } from 'scalecord.ts';
 import config from './config.json'
 
 const bot = createBot({
@@ -105,4 +105,4 @@ bot.gateway?.start()
 
 # Bugs, glitches and issues
 
-If you encounter any problems feel free to open an issue in our <a href="https://github.com/meister03/discord.ts/issues">GitHub repository or join the Discord server.</a>
+If you encounter any problems feel free to open an issue in our <a href="https://github.com/meister03/scalecord.ts/issues">GitHub repository or join the Discord server.</a>
