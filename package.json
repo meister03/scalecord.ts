@@ -1,14 +1,35 @@
 {
     "name": "discord.ts",
     "version": "0.0.1",
-    "description": "Di",
+    "description": "Powerful Discord API library based on Discordeno components, allowing vertical and horizontal scaling.",
     "main": "dist/mod.js",
     "types": "dist/mod.d.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
-    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/meister03/discord.ts.git"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "keywords": [
+        "discord",
+        "discord.ts",
+        "cross-hosting",
+        "standalone-gateway",
+        "standalone-rest",
+        "typescript",
+        "discordeno",
+        "framework"
+    ],
+    "author": "meister03",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/meister03/discord.ts/issues"
+    },
+    "homepage": "https://github.com/meister03/discord.ts/#readme",
     "devDependencies": {
         "@types/express": "^4.17.13",
         "typescript": "^4.7.4"
