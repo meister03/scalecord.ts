@@ -19,7 +19,7 @@ interface OverwrittenCreateGatewayManagerOptions extends Omit<PickPartial<Create
 }
 
 export interface OverwrittenGatewayManager extends ReturnType<typeof createGatewayManager> {
-    bridge?: Bridge & {clients?: Map<string,Client & {shardList?: number[][]}>};
+    bridge?: Bridge & {clients?: Map<string,Client & {shardList?: number[][]}>, totalShards?: number};
     start(): Promise<undefined>;
 }
 
@@ -61,8 +61,7 @@ export class GatewayServerProvider {
             const gatewayBot = await createBot({ token: this.options.token as string }).helpers.getGatewayBot();
             
             // Overwrite Properties
-            // @ts-expect-error
-            gateway.bridge?.totalShards = this.options.totalShards ?? gatewayBot.shards;
+            if(gateway.bridge?.totalShards) gateway.bridge.totalShards = this.options.totalShards ?? gatewayBot.shards;
             await gateway.bridge?.start()
             
 
