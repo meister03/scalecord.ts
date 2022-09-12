@@ -3,9 +3,10 @@
     "compilerOptions": {
       "outDir": "dist",
       "rootDir": "src",
-      "declaration": true,
       "lib": ["esnext"],
-  
+      
+      "declaration": true,
+      "declarationMap": true,
       "composite": false,
       "esModuleInterop": true,
       "moduleResolution": "Node",

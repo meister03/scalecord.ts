@@ -6,3 +6,4 @@ export declare type PickPartial<T, K extends keyof T> = {
 export declare enum GatewayIPCMessageTypes {
     PACKET = 50
 }
+//# sourceMappingURL=shared.d.ts.map

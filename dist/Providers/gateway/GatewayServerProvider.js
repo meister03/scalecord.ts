@@ -69,23 +69,29 @@ var GatewayServerProvider = (function () {
         if (!this.options.handleDiscordPayload)
             this.options.handleDiscordPayload = this.handleDiscordPayload.bind(this);
         this.gateway = (0, gateway_1.createGatewayManager)(this.options);
-        this.create(this.gateway);
+        this.create(this.gateway, options.rest);
         return this.gateway;
     };
-    GatewayServerProvider.prototype.create = function (gateway) {
+    GatewayServerProvider.prototype.create = function (gateway, rest) {
         var _this = this;
         if (!this.options.tcpOptions)
             this.options.tcpOptions = {};
         gateway.bridge = new discord_cross_hosting_1.Bridge(__assign(__assign({}, this.options.tcpOptions), { port: Number(this.options.customUrl.replace(/[^0-9]/g, '')), authToken: this.options.secretKey, token: this.options.token, totalMachines: this.options.totalMachines }));
         gateway.start = function () { return __awaiter(_this, void 0, void 0, function () {
-            var gatewayBot;
+            var tempBot, gatewayBot;
             var _a, _b, _c, _d, _e, _f;
             return __generator(this, function (_g) {
                 switch (_g.label) {
-                    case 0: return [4, (0, discordeno_1.createBot)({ token: this.options.token }).helpers.getGatewayBot()];
+                    case 0:
+                        tempBot = (0, discordeno_1.createBot)({
+                            token: this.options.token,
+                            secretKey: rest === null || rest === void 0 ? void 0 : rest.secretKey
+                        });
+                        return [4, tempBot.helpers.getGatewayBot()];
                     case 1:
                         gatewayBot = _g.sent();
-                        (_a = gateway.bridge) === null || _a === void 0 ? void 0 : _a.totalShards = (_b = this.options.totalShards) !== null && _b !== void 0 ? _b : gatewayBot.shards;
+                        if ((_a = gateway.bridge) === null || _a === void 0 ? void 0 : _a.totalShards)
+                            gateway.bridge.totalShards = (_b = this.options.totalShards) !== null && _b !== void 0 ? _b : gatewayBot.shards;
                         return [4, ((_c = gateway.bridge) === null || _c === void 0 ? void 0 : _c.start())];
                     case 2:
                         _g.sent();

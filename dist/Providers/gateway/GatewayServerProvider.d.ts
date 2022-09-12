@@ -1,7 +1,8 @@
+import { RestManager } from "discordeno";
 import { CreateGatewayManager, createGatewayManager, Shard, ShardGatewayConfig } from "discordeno/gateway";
 import { DiscordGatewayPayload } from "discordeno/types";
 import { PickPartial } from "../../types/shared";
-import { Bridge, BridgeOptions, Client } from "discord-cross-hosting";
+import { Bridge, BridgeOptions } from "discord-cross-hosting";
 import { DiscordGatewayPayloadIPCMessage } from "../mod";
 interface OverwrittenCreateGatewayManagerOptions extends Omit<PickPartial<CreateGatewayManager, "gatewayConfig">, "gatewayConfig"> {
     token?: string;
@@ -18,11 +19,7 @@ interface OverwrittenCreateGatewayManagerOptions extends Omit<PickPartial<Create
     sendPayload?(message: DiscordGatewayPayload & DiscordGatewayPayloadIPCMessage): any;
 }
 export interface OverwrittenGatewayManager extends ReturnType<typeof createGatewayManager> {
-    bridge?: Bridge & {
-        clients?: Map<string, Client & {
-            shardList?: number[][];
-        }>;
-    };
+    bridge?: Bridge;
     start(): Promise<undefined>;
 }
 export declare class GatewayServerProvider {
@@ -31,8 +28,9 @@ export declare class GatewayServerProvider {
     constructor(options: OverwrittenCreateGatewayManagerOptions);
     build(options: {
         token: string;
+        rest?: RestManager;
     }): OverwrittenGatewayManager;
-    create(gateway: OverwrittenGatewayManager): void;
+    create(gateway: OverwrittenGatewayManager, rest?: RestManager): void;
     handleDiscordPayload(shard: Shard, message: DiscordGatewayPayload): any;
     filterPayload(shard: Shard, message: DiscordGatewayPayload): boolean | Boolean;
     convertPayload(shard: Shard, message: DiscordGatewayPayload & {
@@ -43,3 +41,4 @@ export declare class GatewayServerProvider {
     sendPayload(message: ReturnType<GatewayServerProvider["convertPayload"]>): any;
 }
 export {};
+//# sourceMappingURL=GatewayServerProvider.d.ts.map

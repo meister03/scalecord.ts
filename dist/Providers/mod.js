@@ -15,6 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 exports.__esModule = true;
 __exportStar(require("./cache/CacheClientProvider"), exports);
+__exportStar(require("./cache/CacheServerProvider"), exports);
 __exportStar(require("./gateway/GatewayClientProvider"), exports);
 __exportStar(require("./gateway/GatewayServerProvider"), exports);
 __exportStar(require("./rest/RestClientProvider"), exports);

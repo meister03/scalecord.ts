@@ -1,5 +1,5 @@
 import { RestManager } from "discordeno/rest";
-import { OverwrittenGatewayManager, ServerProviders } from "./Providers/mod";
+import { CacheServerType, OverwrittenGatewayManager, ServerProviders } from "./Providers/mod";
 export declare class Server {
     options: {
         token: string;
@@ -7,9 +7,11 @@ export declare class Server {
     };
     rest?: RestManager;
     gateway?: OverwrittenGatewayManager;
+    cache?: CacheServerType;
     constructor(options: {
         token: string;
         providers: ServerProviders;
     });
     build(): void;
 }
+//# sourceMappingURL=Server.d.ts.map

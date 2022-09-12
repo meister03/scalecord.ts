@@ -64,30 +64,45 @@ var RestServerProvider = (function () {
         app.use(express_1["default"].json());
         app.post("/*", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                if (this.options.secretKey !== req.headers.authorization) {
+                    return [2, res.status(401).json({ error: "Invalid authorization key." })];
+                }
                 this.handleRequest(this.transformRequest(req), this.transformResponse(res));
                 return [2];
             });
         }); });
         app.get("/*", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                if (this.options.secretKey !== req.headers.authorization) {
+                    return [2, res.status(401).json({ error: "Invalid authorization key." })];
+                }
                 this.handleRequest(this.transformRequest(req), this.transformResponse(res));
                 return [2];
             });
         }); });
         app.put("/*", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                if (this.options.secretKey !== req.headers.authorization) {
+                    return [2, res.status(401).json({ error: "Invalid authorization key." })];
+                }
                 this.handleRequest(this.transformRequest(req), this.transformResponse(res));
                 return [2];
             });
         }); });
         app["delete"]("/*", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                if (this.options.secretKey !== req.headers.authorization) {
+                    return [2, res.status(401).json({ error: "Invalid authorization key." })];
+                }
                 this.handleRequest(this.transformRequest(req), this.transformResponse(res));
                 return [2];
             });
         }); });
         app.patch("/*", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                if (this.options.secretKey !== req.headers.authorization) {
+                    return [2, res.status(401).json({ error: "Invalid authorization key." })];
+                }
                 this.handleRequest(this.transformRequest(req), this.transformResponse(res));
                 return [2];
             });

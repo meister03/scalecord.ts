@@ -26,3 +26,4 @@ export declare class GatewayClientProvider {
     handlePayload(bot: Bot, packet: DiscordGatewayPayloadIPCMessage): void;
 }
 export {};
+//# sourceMappingURL=GatewayClientProvider.d.ts.map

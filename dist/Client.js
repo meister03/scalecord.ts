@@ -40,8 +40,6 @@ exports.createBot = void 0;
 var discordeno_1 = require("discordeno");
 function createBot(options, providers) {
     var _this = this;
-    if (providers === null || providers === void 0 ? void 0 : providers.cache) {
-    }
     if (providers === null || providers === void 0 ? void 0 : providers.rest) {
         options.rest = providers.rest.build({ token: options.token });
     }
@@ -56,6 +54,9 @@ function createBot(options, providers) {
                 throw new Error('GatewayClientProviderOptions has not been provided');
             });
         }); };
+    if (providers === null || providers === void 0 ? void 0 : providers.cache) {
+        bot.storage = providers.cache.build().storage;
+    }
     return bot;
 }
 exports.createBot = createBot;

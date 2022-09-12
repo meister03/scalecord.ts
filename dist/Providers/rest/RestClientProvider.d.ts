@@ -58,3 +58,4 @@ export declare class RestClientProvider {
     };
 }
 export {};
+//# sourceMappingURL=RestClientProvider.d.ts.map

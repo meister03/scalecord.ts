@@ -48,21 +48,36 @@ export class RestServerProvider {
         app.use(express.json());
 
         app.post("/*", async (req, res) => {
+            if (this.options.secretKey !== req.headers.authorization) {
+                return res.status(401).json({ error: "Invalid authorization key." });
+            }
             this.handleRequest(this.transformRequest(req), this.transformResponse(res));
         });
         app.get("/*", async (req, res) => {
+            if (this.options.secretKey !== req.headers.authorization) {
+                return res.status(401).json({ error: "Invalid authorization key." });
+            }
             this.handleRequest(this.transformRequest(req), this.transformResponse(res));
         });
 
         app.put("/*", async (req, res) => {
+            if (this.options.secretKey !== req.headers.authorization) {
+                return res.status(401).json({ error: "Invalid authorization key." });
+            }
             this.handleRequest(this.transformRequest(req), this.transformResponse(res));
         });
 
         app.delete("/*", async (req, res) => {
+            if (this.options.secretKey !== req.headers.authorization) {
+                return res.status(401).json({ error: "Invalid authorization key." });
+            }
             this.handleRequest(this.transformRequest(req), this.transformResponse(res));
         });
 
         app.patch("/*", async (req, res) => {
+            if (this.options.secretKey !== req.headers.authorization) {
+                return res.status(401).json({ error: "Invalid authorization key." });
+            }
             this.handleRequest(this.transformRequest(req), this.transformResponse(res));
         });
 

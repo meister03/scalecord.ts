@@ -1,14 +1,11 @@
 import { Bot, createBot as DDcreateBot, CreateBotOptions } from "discordeno";
-import { OverwrittenGatewayManagerClient, Providers } from "./Providers/mod";
+import { CacheClientType, OverwrittenGatewayManagerClient, Providers } from "./Providers/mod";
 
 export function createBot(options: CreateBotOptions, providers?: Providers) {
-    if (providers?.cache) {
-
-    }
     if (providers?.rest) {
         options.rest = providers.rest.build({ token: options.token });
     }
-    const bot = DDcreateBot(options) as GatewayBot;
+    const bot = DDcreateBot(options) as OverwrittenBot;
     if (providers?.gateway) {
         const gateway = providers.gateway.build({ token: options.token , bot});
         bot.gateway = gateway;
@@ -16,10 +13,13 @@ export function createBot(options: CreateBotOptions, providers?: Providers) {
         throw new Error('GatewayClientProviderOptions has not been provided');
         //return undefined;
     };
+    if (providers?.cache) {
+        bot.storage = providers.cache.build().storage;
+    }
     return bot;
 }
 
-interface GatewayBot extends Bot {
+export interface OverwrittenBot extends Bot {
     gateway: OverwrittenGatewayManagerClient;
+    storage?: CacheClientType;
 }
-

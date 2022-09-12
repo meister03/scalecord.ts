@@ -1,8 +1,8 @@
-import { createBot } from "discordeno";
+import { createBot, RestManager } from "discordeno";
 import { CreateGatewayManager, createGatewayManager, Shard, ShardGatewayConfig } from "discordeno/gateway";
 import { DiscordGatewayPayload } from "discordeno/types";
 import { GatewayIPCMessageTypes, PickPartial } from "../../types/shared";
-import { Bridge, BridgeOptions, Client} from "discord-cross-hosting"
+import { Bridge, BridgeOptions } from "discord-cross-hosting"
 import { DiscordGatewayPayloadIPCMessage } from "../mod";
 
 interface OverwrittenCreateGatewayManagerOptions extends Omit<PickPartial<CreateGatewayManager, "gatewayConfig">, "gatewayConfig"> {
@@ -19,7 +19,7 @@ interface OverwrittenCreateGatewayManagerOptions extends Omit<PickPartial<Create
 }
 
 export interface OverwrittenGatewayManager extends ReturnType<typeof createGatewayManager> {
-    bridge?: Bridge & {clients?: Map<string,Client & {shardList?: number[][]}>, totalShards?: number};
+    bridge?: Bridge;
     start(): Promise<undefined>;
 }
 
@@ -30,7 +30,7 @@ export class GatewayServerProvider {
         this.options = options;
     }
 
-    public build(options: { token: string }) {
+    public build(options: { token: string , rest?: RestManager}) {
         this.options.token = options.token;
         if (!this.options.gatewayConfig) this.options.gatewayConfig = { token: options.token, intents: this.options.intents };
         else {
@@ -42,12 +42,12 @@ export class GatewayServerProvider {
         this.gateway = createGatewayManager(this.options as CreateGatewayManager) as OverwrittenGatewayManager;
 
         // Creates to an IPC to all clients
-        this.create(this.gateway);
+        this.create(this.gateway, options.rest);
         return this.gateway;
     }
 
-    public create(gateway: OverwrittenGatewayManager) {
-        if(!this.options.tcpOptions) this.options.tcpOptions = {} as any;
+    public create(gateway: OverwrittenGatewayManager, rest?: RestManager) {
+        if (!this.options.tcpOptions) this.options.tcpOptions = {} as any;
         gateway.bridge = new Bridge({
             //path: this.options.customUrl.replace(/[0-9]/g, '').replace(':', ''),
             ...this.options.tcpOptions,
@@ -58,12 +58,16 @@ export class GatewayServerProvider {
         })
 
         gateway.start = async () => {
-            const gatewayBot = await createBot({ token: this.options.token as string }).helpers.getGatewayBot();
-            
+            const tempBot = createBot({
+                token: this.options.token as string, 
+                secretKey: rest?.secretKey,
+            });
+            const gatewayBot = await tempBot.helpers.getGatewayBot();
+
             // Overwrite Properties
-            if(gateway.bridge?.totalShards) gateway.bridge.totalShards = this.options.totalShards ?? gatewayBot.shards;
+            if (gateway.bridge?.totalShards) gateway.bridge.totalShards = this.options.totalShards ?? gatewayBot.shards;
             await gateway.bridge?.start()
-            
+
 
             gateway.gatewayBot = gatewayBot;
             gateway.manager.totalShards = this.options.totalShards ?? gatewayBot.shards;
@@ -97,13 +101,13 @@ export class GatewayServerProvider {
     public sendPayload(message: ReturnType<GatewayServerProvider["convertPayload"]>) {
         if (this.options.sendPayload) return this.options.sendPayload(message as DiscordGatewayPayloadIPCMessage);
 
-       
-        if(this.gateway?.bridge?.clients) {
-            for (const client of Array.from(this.gateway.bridge.clients)){
-                if(client[1].shardList === undefined) continue;
+
+        if (this.gateway?.bridge?.clients) {
+            for (const client of Array.from(this.gateway.bridge.clients)) {
+                if (client[1].shardList === undefined) continue;
                 const shardList = client[1].shardList.flat();
-                if(shardList.includes(message.shardId as number)){
-                    client[1].send({packet: message, type: GatewayIPCMessageTypes.PACKET});
+                if (shardList.includes(message.shardId as number)) {
+                    client[1].send({ packet: message, type: GatewayIPCMessageTypes.PACKET });
                     break;
                 }
             }
