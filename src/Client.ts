@@ -1,9 +1,11 @@
+import { CacheClient } from "discord-cross-hosting";
 import { Bot, createBot as DDcreateBot, CreateBotOptions } from "discordeno";
-import { CacheClientType, OverwrittenGatewayManagerClient, Providers } from "./Providers/mod";
+import { OverwrittenGatewayManagerClient, Providers } from "./Providers/mod";
 
 export function createBot(options: CreateBotOptions, providers?: Providers) {
     if (providers?.rest) {
         options.rest = providers.rest.build({ token: options.token });
+        options.secretKey = providers.rest?.options.secretKey;
     }
     const bot = DDcreateBot(options) as OverwrittenBot;
     if (providers?.gateway) {
@@ -21,5 +23,5 @@ export function createBot(options: CreateBotOptions, providers?: Providers) {
 
 export interface OverwrittenBot extends Bot {
     gateway: OverwrittenGatewayManagerClient;
-    storage?: CacheClientType;
+    storage?: CacheClient;
 }

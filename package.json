@@ -37,8 +37,8 @@
         "typescript": "^4.7.4"
     },
     "dependencies": {
-        "discord-cross-hosting": "^2.3.2",
-        "discordeno": "^14.0.1",
+        "discord-cross-hosting": "github:meister03/discord-cross-hosting",
+        "discordeno": "^16.0.0",
         "express": "^4.18.1"
     }
 }

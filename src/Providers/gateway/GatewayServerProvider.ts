@@ -101,13 +101,13 @@ export class GatewayServerProvider {
     public sendPayload(message: ReturnType<GatewayServerProvider["convertPayload"]>) {
         if (this.options.sendPayload) return this.options.sendPayload(message as DiscordGatewayPayloadIPCMessage);
 
-
         if (this.gateway?.bridge?.clients) {
             for (const client of Array.from(this.gateway.bridge.clients)) {
                 if (client[1].shardList === undefined) continue;
                 const shardList = client[1].shardList.flat();
                 if (shardList.includes(message.shardId as number)) {
-                    client[1].send({ packet: message, type: GatewayIPCMessageTypes.PACKET });
+                    const packetMessage = { packet: message, _type: GatewayIPCMessageTypes.PACKET };
+                    client[1].send(packetMessage);
                     break;
                 }
             }

@@ -44,8 +44,8 @@ export class GatewayClientProvider {
             agent: 'bot',
         });
 
-        gateway.client.on('bridgeMessage', (msg: IPCMessage & { type?: number , packet?: DiscordGatewayPayloadIPCMessage}, client) => {
-            if (msg?.type === GatewayIPCMessageTypes.PACKET && msg.packet) {
+        gateway.client.on('bridgeMessage', (msg: IPCMessage & { _type?: number , packet?: DiscordGatewayPayloadIPCMessage}, client) => {
+            if (msg?._type === GatewayIPCMessageTypes.PACKET && msg.packet) {
                 this.handlePayload(bot, msg.packet);
             }
         });

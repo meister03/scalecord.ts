@@ -12,7 +12,7 @@ export class RestClientProvider {
         this.options = options;
     }
 
-    public build(options: {token: string}){
+    public build(options: {token: string}): ReturnType<typeof createRestManager>{
         this.options.token = options.token;
         return createRestManager(this.options as CreateRestManagerOptions);
     }

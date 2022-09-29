@@ -1,0 +1,1 @@
+{"version":3,"file":"DestructObject.d.ts","sourceRoot":"","sources":["../../../src/Discordeno.ts/Structures/DestructObject.ts"],"names":[],"mappings":"AACA,qBAAa,cAAc;IACvB,IAAI,EAAE,MAAM,CAAC;gBACD,OAAO,GAAE,MAAW,EAAE,YAAY,KAAK;IAInD,cAAc,CAAC,OAAO,EAAE,MAAM,EAAE,YAAY,EAAE;QAAC,CAAC,CAAC,EAAC,MAAM,GAAG,GAAG,CAAA;KAAC;IAqB/D,MAAM;CAGT"}

@@ -1,0 +1,58 @@
+export declare class Permissions {
+    static FLAGS: {
+        ADMINISTRATOR: bigint;
+        BAN_MEMBERS: bigint;
+        KICK_MEMBERS: bigint;
+        MANAGE_GUILD: bigint;
+        MANAGE_CHANNELS: bigint;
+        MANAGE_NICKNAMES: bigint;
+        MANAGE_ROLES: bigint;
+        MANAGE_WEBHOOKS: bigint;
+        MANAGE_EMOJIS_AND_STICKERS: bigint;
+        VIEW_AUDIT_LOG: bigint;
+        VIEW_CHANNEL: bigint;
+        MANAGE_MESSAGES: bigint;
+        SEND_MESSAGES: bigint;
+        READ_MESSAGE_HISTORY: bigint;
+        EMBED_LINKS: bigint;
+        ADD_REACTIONS: bigint;
+        ATTACH_FILES: bigint;
+        SEND_TTS_MESSAGES: bigint;
+        CREATE_INSTANT_INVITE: bigint;
+        PRIORITY_SPEAKER: bigint;
+        STREAM: bigint;
+        MENTION_EVERYONE: bigint;
+        USE_EXTERNAL_EMOJIS: bigint;
+        VIEW_GUILD_INSIGHTS: bigint;
+        CONNECT: bigint;
+        SPEAK: bigint;
+        MUTE_MEMBERS: bigint;
+        DEAFEN_MEMBERS: bigint;
+        MOVE_MEMBERS: bigint;
+        USE_VAD: bigint;
+        CHANGE_NICKNAME: bigint;
+        USE_APPLICATION_COMMANDS: bigint;
+        REQUEST_TO_SPEAK: bigint;
+        MANAGE_EVENTS: bigint;
+        MANAGE_THREADS: bigint;
+        USE_PUBLIC_THREADS: bigint;
+        CREATE_PUBLIC_THREADS: bigint;
+        USE_PRIVATE_THREADS: bigint;
+        CREATE_PRIVATE_THREADS: bigint;
+        USE_EXTERNAL_STICKERS: bigint;
+        SEND_MESSAGES_IN_THREADS: bigint;
+        START_EMBEDDED_ACTIVITIES: bigint;
+        MODERATE_MEMBERS: bigint;
+    };
+    static ALL: bigint;
+    bits: bigint;
+    constructor(permission: bigint | bigint[]);
+    _has(permission: bigint): boolean;
+    has(permission: bigint, checkAdministrator?: boolean): boolean;
+    transform(bit: bigint | bigint[]): bigint;
+    freeze(): Readonly<this>;
+    add(...bits: bigint[]): Permissions;
+    remove(...bits: bigint[]): Permissions;
+    toArray(): string[];
+}
+//# sourceMappingURL=Permissions.d.ts.map

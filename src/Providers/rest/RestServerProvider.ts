@@ -28,7 +28,7 @@ export class RestServerProvider {
         this.options = options;
     }
 
-    public build(options: { token: string }) {
+    public build(options: { token: string }): RestManager {
         this.options.token = options.token;
         this.rest = createRestManager(this.options as CreateRestManagerOptions);
         this.create();
@@ -37,6 +37,12 @@ export class RestServerProvider {
 
     public create() {
         if(this.options.create) return this.options.create(this);
+
+        // @ts-expect-error
+        this.rest.convertRestError = (errorStack, data) => {
+            return data;
+        }
+
         const app = express();
 
         app.use(
@@ -104,9 +110,7 @@ export class RestServerProvider {
         } catch (error: any) {
             if (error?.code) res.respond(500, error);
             else {
-                res.respond(500, {
-                    error: error.message ?? "No error found at all what the hell discord.",
-                });
+                res.respond(500, error);
             }
         }
     }

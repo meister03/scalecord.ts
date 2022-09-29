@@ -1,5 +1,6 @@
+import { CacheServer } from "discord-cross-hosting";
 import { RestManager } from "discordeno/rest";
-import { CacheServerType, OverwrittenGatewayManager, ServerProviders } from "./Providers/mod";
+import { OverwrittenGatewayManager, ServerProviders } from "./Providers/mod";
 
 export class Server {
     options: {
@@ -7,7 +8,7 @@ export class Server {
     };
     rest?: RestManager;
     gateway?: OverwrittenGatewayManager;
-    cache?: CacheServerType;
+    cache?: CacheServer;
     constructor(options: { token: string, providers: ServerProviders }) {
         this.options = options;
         this.build()
