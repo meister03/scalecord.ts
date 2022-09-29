@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "discord-cross-hosting": "github:meister03/discord-cross-hosting",
-        "discordeno": "^16.0.0",
+        "discordeno": "^16.0.1",
         "express": "^4.18.1"
     }
 }
