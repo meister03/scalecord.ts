@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.applicationCommandOptionsTypes = exports.applicationCommandTypes = exports.COLORS = exports.permissionOverwritesTypes = exports.DISCORD_EPOCH = void 0;
-exports.DISCORD_EPOCH = 1_420_070_400_000;
+exports.DISCORD_EPOCH = 1420070400000;
 var permissionOverwritesTypes;
 (function (permissionOverwritesTypes) {
     permissionOverwritesTypes[permissionOverwritesTypes["role"] = 0] = "role";

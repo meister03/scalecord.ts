@@ -3,8 +3,8 @@
   "compilerOptions": {
       "outDir": "dist",
       "rootDir": "src",
-      "lib": ["ESNext"],
-      "target": "ESNext",
+      "lib": ["ES2022"],
+      "target": "ES2022",
       "module": "CommonJS",
       "moduleResolution": "Node",
       "declaration": true,
