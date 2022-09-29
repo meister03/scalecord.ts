@@ -25,7 +25,7 @@ export function overwriteTransformers(bot: CacheBot) {
     }
 
     bot.events.raw = function (_bot, packet, shardId) {
-        if (Actions[packet.t]) Actions[packet.t](bot, packet, shardId);
+        if (Actions[packet.t]) Actions[packet.t]?.(bot, packet, shardId);
     };
 
     bot.transformers.guild = function (_, payload) {

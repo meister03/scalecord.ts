@@ -24,7 +24,7 @@ function overwriteTransformers(bot) {
     };
     bot.events.raw = function (_bot, packet, shardId) {
         if (ActionManager_1.default[packet.t])
-            ActionManager_1.default[packet.t](bot, packet, shardId);
+            ActionManager_1.default[packet.t]?.(bot, packet, shardId);
     };
     bot.transformers.guild = function (_, payload) {
         // Run the unmodified transformer
