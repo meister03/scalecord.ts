@@ -23,6 +23,7 @@ export * from './Structures/Permissions';
 export * from './Structures/Role';
 export * from './Structures/User';
 export * from './Structures/Webhook';
+export * from './Structures/Websocket';
 export * from './Util/Component';
 export * from './Util/Embed';
 export * from './Util/transformOptions';
