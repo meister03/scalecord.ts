@@ -117,6 +117,8 @@ export function THREAD_DELETE(bot, packet, shardId) {
   return bot.guilds.cache._set(guild.id, guild);
 }
 
+
+
 /// Interaction Based Events
 
 export function MESSAGE_DELETE(bot, packet, shardId) {
@@ -188,4 +190,22 @@ export function MESSAGE_REACTION_REMOVE_EMOJI(bot, packet, shardId) {
   message.reactions = message.reactions?.filter((r) => r.emoji.id !== packet.d.emoji.id);
   channel.messages.patch(message.id, message);
   return bot.channels.cache._set(channel.id, channel);
+}
+
+export default { 
+  GUILD_DELETE, 
+  GUILD_MEMBERS_CHUNK, 
+  GUILD_EMOJIS_UPDATE, 
+  GUILD_MEMBER_ADD, 
+  GUILD_MEMBER_REMOVE, 
+  GUILD_MEMBER_UPDATE,
+  GUILD_ROLE_DELETE,
+  CHANNEL_DELETE,
+  THREAD_DELETE,
+  MESSAGE_DELETE,
+  MESSAGE_DELETE_BULK,
+  MESSAGE_REACTION_ADD,
+  MESSAGE_REACTION_REMOVE,
+  MESSAGE_REACTION_REMOVE_ALL,
+  MESSAGE_REACTION_REMOVE_EMOJI
 }

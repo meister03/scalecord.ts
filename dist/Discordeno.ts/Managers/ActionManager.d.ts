@@ -13,4 +13,22 @@ export declare function MESSAGE_REACTION_ADD(bot: any, packet: any, shardId: any
 export declare function MESSAGE_REACTION_REMOVE(bot: any, packet: any, shardId: any): any;
 export declare function MESSAGE_REACTION_REMOVE_ALL(bot: any, packet: any, shardId: any): any;
 export declare function MESSAGE_REACTION_REMOVE_EMOJI(bot: any, packet: any, shardId: any): any;
+declare const _default: {
+    GUILD_DELETE: typeof GUILD_DELETE;
+    GUILD_MEMBERS_CHUNK: typeof GUILD_MEMBERS_CHUNK;
+    GUILD_EMOJIS_UPDATE: typeof GUILD_EMOJIS_UPDATE;
+    GUILD_MEMBER_ADD: typeof GUILD_MEMBER_ADD;
+    GUILD_MEMBER_REMOVE: typeof GUILD_MEMBER_REMOVE;
+    GUILD_MEMBER_UPDATE: typeof GUILD_MEMBER_UPDATE;
+    GUILD_ROLE_DELETE: typeof GUILD_ROLE_DELETE;
+    CHANNEL_DELETE: typeof CHANNEL_DELETE;
+    THREAD_DELETE: typeof THREAD_DELETE;
+    MESSAGE_DELETE: typeof MESSAGE_DELETE;
+    MESSAGE_DELETE_BULK: typeof MESSAGE_DELETE_BULK;
+    MESSAGE_REACTION_ADD: typeof MESSAGE_REACTION_ADD;
+    MESSAGE_REACTION_REMOVE: typeof MESSAGE_REACTION_REMOVE;
+    MESSAGE_REACTION_REMOVE_ALL: typeof MESSAGE_REACTION_REMOVE_ALL;
+    MESSAGE_REACTION_REMOVE_EMOJI: typeof MESSAGE_REACTION_REMOVE_EMOJI;
+};
+export default _default;
 //# sourceMappingURL=ActionManager.d.ts.map
