@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.transformPermissionOverwrites = exports.transformAttachments = exports.transformOptions = void 0;
+exports.transformApplicationCommandOptions = exports.transformApplicationCommand = exports.transformPermissionOverwrites = exports.transformAttachments = exports.transformOptions = void 0;
 const Permissions_1 = require("../Structures/Permissions");
 const shared_1 = require("../types/shared");
 function transformOptions(options, defaults) {
@@ -82,3 +82,24 @@ function transformPermissionOverwrites(permissionOverwrites) {
     return result;
 }
 exports.transformPermissionOverwrites = transformPermissionOverwrites;
+// @ts-expect-error
+function transformApplicationCommand(options) {
+    return {
+        ...options,
+        type: shared_1.applicationCommandTypes[options.type] || options.type,
+        options: options.options ? transformApplicationCommandOptions(options.options) : undefined
+    };
+}
+exports.transformApplicationCommand = transformApplicationCommand;
+// @ts-expect-error
+function transformApplicationCommandOptions(options) {
+    // @ts-expect-error
+    return options.map(option => {
+        return {
+            ...option,
+            type: shared_1.applicationCommandOptionsTypes[option.type] || option.type,
+            options: option.options ? transformApplicationCommandOptions(option.options) : undefined,
+        };
+    });
+}
+exports.transformApplicationCommandOptions = transformApplicationCommandOptions;

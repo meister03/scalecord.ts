@@ -22,3 +22,24 @@ export const COLORS = {
     GREYPLE: 0x99aab5,
     BLURPLE: 0x5865f2,
 }
+
+
+export enum applicationCommandTypes {
+    'CHAT_INPUT' = 1,
+    'USER',
+    'MESSAGE',
+};
+
+export enum applicationCommandOptionsTypes {
+    'SUB_COMMAND' = 1,
+    'SUB_COMMAND_GROUP',
+    'STRING',
+    'INTEGER',
+    'BOOLEAN',
+    'USER',
+    'CHANNEL',
+    'ROLE',
+    'MENTIONABLE',
+    'NUMBER',
+    'ATTACHMENT',
+}

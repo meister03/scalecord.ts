@@ -27,6 +27,7 @@ __exportStar(require("./Managers/UserManager"), exports);
 __exportStar(require("./Structures/BaseCollection"), exports);
 __exportStar(require("./Structures/CacheCollection"), exports);
 __exportStar(require("./Structures/Channel"), exports);
+__exportStar(require("./Structures/Client"), exports);
 __exportStar(require("./Structures/DestructObject"), exports);
 __exportStar(require("./Structures/Emoji"), exports);
 __exportStar(require("./Structures/Guild"), exports);

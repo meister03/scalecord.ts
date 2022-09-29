@@ -10,6 +10,7 @@ import { MessageManager } from "./MessageManager";
 import { RoleManager } from "./RoleManager";
 import { UserManager } from "./UserManager";
 import Actions from './ActionManager'
+import { OverwrittenBot } from "../../Client";
 
 export function overwriteTransformers(bot: CacheBot) {
     const { guild, user, member, channel, message, role, emoji, embed } = bot.transformers;
@@ -187,7 +188,7 @@ export function enableCachePlugin(bot: Bot, options: BotCacheOptions) {
     return overwriteTransformers(bot);
 }
 
-export interface CacheBot extends Omit<Bot, 'transformers' | 'utils'|'helpers'> {
+export interface CacheBot extends Omit<OverwrittenBot, 'transformers' | 'utils'|'helpers'> {
     members: MemberManager;
     emojis: EmojiManager;
     users: UserManager;

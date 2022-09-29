@@ -7,9 +7,10 @@ import { MemberManager } from "./MemberManager";
 import { MessageManager } from "./MessageManager";
 import { RoleManager } from "./RoleManager";
 import { UserManager } from "./UserManager";
+import { OverwrittenBot } from "../../Client";
 export declare function overwriteTransformers(bot: CacheBot): CacheBot;
 export declare function enableCachePlugin(bot: Bot, options: BotCacheOptions): CacheBot;
-export interface CacheBot extends Omit<Bot, 'transformers' | 'utils' | 'helpers'> {
+export interface CacheBot extends Omit<OverwrittenBot, 'transformers' | 'utils' | 'helpers'> {
     members: MemberManager;
     emojis: EmojiManager;
     users: UserManager;

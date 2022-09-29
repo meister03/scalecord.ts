@@ -9,4 +9,6 @@ export declare function transformAttachments(attachments: AttachmentBlobFormat):
     name: string;
 }[];
 export declare function transformPermissionOverwrites(permissionOverwrites: permissionOverwrites[]): OverwriteReadable[];
+export declare function transformApplicationCommand(options: any): any;
+export declare function transformApplicationCommandOptions(options: any): any;
 //# sourceMappingURL=transformOptions.d.ts.map

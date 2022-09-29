@@ -13,6 +13,7 @@ export * from './Managers/UserManager';
 export * from './Structures/BaseCollection';
 export * from './Structures/CacheCollection';
 export * from './Structures/Channel';
+export * from './Structures/Client';
 export * from './Structures/DestructObject';
 export * from './Structures/Emoji';
 export * from './Structures/Guild';

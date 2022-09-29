@@ -1,6 +1,6 @@
 import { OverwriteReadable } from "discordeno/types";
 import { Permissions } from "../Structures/Permissions";
-import { AttachmentBlobFormat, permissionOverwrites, permissionOverwritesTypes } from "../types/shared";
+import { applicationCommandOptionsTypes, applicationCommandTypes, AttachmentBlobFormat, permissionOverwrites, permissionOverwritesTypes } from "../types/shared";
 
 export function transformOptions<V>(options: object | string, defaults?: {content?: Boolean, reason?: Boolean}) {
     if (defaults?.content) {
@@ -75,3 +75,26 @@ export function transformPermissionOverwrites(permissionOverwrites: permissionOv
     if (!isArray) result = result[0];
     return result;
 }
+
+// @ts-expect-error
+export function transformApplicationCommand(options) {
+    return {
+        ...options,
+        type: applicationCommandTypes[options.type] || options.type,
+        options: options.options ? transformApplicationCommandOptions(options.options) : undefined
+    }
+}
+
+// @ts-expect-error
+export function transformApplicationCommandOptions(options) {
+    
+// @ts-expect-error
+    return options.map(option => {
+        return {
+            ...option,
+            type: applicationCommandOptionsTypes[option.type] || option.type,
+            options: option.options ? transformApplicationCommandOptions(option.options) : undefined,
+        }
+    })
+}
+
