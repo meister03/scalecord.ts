@@ -1,7 +1,7 @@
 import { Collection } from "discordeno";
 import { createGatewayManager, Shard} from "discordeno/gateway";
 
-export class WebSocket {
+export class FakeWebSocket {
     shards: Collection<number, Shard>;
     constructor(gateway: ReturnType<typeof createGatewayManager>) {
         this.shards = gateway.manager.shards;

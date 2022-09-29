@@ -1,6 +1,6 @@
 import { Collection } from "discordeno";
 import { createGatewayManager, Shard } from "discordeno/gateway";
-export declare class WebSocket {
+export declare class FakeWebSocket {
     shards: Collection<number, Shard>;
     constructor(gateway: ReturnType<typeof createGatewayManager>);
     get ping(): number;

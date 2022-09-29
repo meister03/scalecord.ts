@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WebSocket = void 0;
-class WebSocket {
+exports.FakeWebSocket = void 0;
+class FakeWebSocket {
     shards;
     constructor(gateway) {
         this.shards = gateway.manager.shards;
@@ -21,7 +21,7 @@ class WebSocket {
         return shards;
     }
 }
-exports.WebSocket = WebSocket;
+exports.FakeWebSocket = FakeWebSocket;
 function getStatus(x) {
     return x.state;
 }
