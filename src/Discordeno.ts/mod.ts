@@ -11,6 +11,7 @@ export * from './Managers/UserManager';
 
 
 export * from './Structures/BaseCollection';
+export { BaseCollection as Collection } from './Structures/BaseCollection';
 export * from './Structures/CacheCollection';
 export * from './Structures/Channel';
 export * from './Structures/Client';

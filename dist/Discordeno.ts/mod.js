@@ -14,6 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Collection = void 0;
 __exportStar(require("./Managers/ActionManager"), exports);
 __exportStar(require("./Managers/CacheManager"), exports);
 __exportStar(require("./Managers/ChannelManager"), exports);
@@ -25,6 +26,8 @@ __exportStar(require("./Managers/MessageManager"), exports);
 __exportStar(require("./Managers/RoleManager"), exports);
 __exportStar(require("./Managers/UserManager"), exports);
 __exportStar(require("./Structures/BaseCollection"), exports);
+var BaseCollection_1 = require("./Structures/BaseCollection");
+Object.defineProperty(exports, "Collection", { enumerable: true, get: function () { return BaseCollection_1.BaseCollection; } });
 __exportStar(require("./Structures/CacheCollection"), exports);
 __exportStar(require("./Structures/Channel"), exports);
 __exportStar(require("./Structures/Client"), exports);
