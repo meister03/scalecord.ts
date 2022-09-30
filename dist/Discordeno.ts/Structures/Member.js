@@ -18,6 +18,8 @@ class Member extends DestructObject_1.DestructObject {
         this.guild = options.guild ?? this.client.guilds.forge({ id: this.guildId });
         if (options.user)
             data.user = options.user;
+        if (typeof options.user !== 'object')
+            options.user = { id: this.id, avatar: this.avatar };
         this.user = client.users.forge(data.user ?? options.user);
         // Shallow Copy RoleIds befor overwrite
         // @ts-expect-error

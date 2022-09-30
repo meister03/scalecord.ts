@@ -22,6 +22,7 @@ export class Member extends DestructObject {
         this.guild = options.guild  ?? this.client.guilds.forge({id: this.guildId} as any);
 
         if (options.user) data.user = options.user;
+        if(typeof options.user !== 'object') options.user = { id: this.id, avatar: this.avatar} as any;
 
         this.user = client.users.forge(data.user ?? options.user);
 
