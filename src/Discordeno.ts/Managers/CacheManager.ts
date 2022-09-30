@@ -11,6 +11,7 @@ import { RoleManager } from "./RoleManager";
 import { UserManager } from "./UserManager";
 import Actions from './ActionManager'
 import { OverwrittenBot } from "../../Client";
+import { Channel, Emoji, Guild, Member, Message, Role } from "../mod";
 
 export function overwriteTransformers(bot: CacheBot) {
     const { guild, user, member, channel, message, role, emoji, embed } = bot.transformers;
@@ -150,37 +151,37 @@ export function enableCachePlugin(bot: Bot, options: BotCacheOptions) {
         {
             emojis: new EmojiManager(bot as CacheBot, {
                 emojis: new CacheCollection(
-                    createOptions(bot as CacheBot, options.emojis, 'emojis')
+                    createOptions(bot as CacheBot, options.emojis, Emoji, 'guild')
                 )
             }),
             users: new UserManager(bot as CacheBot, {
                 users: new CacheCollection(
-                    createOptions(bot as CacheBot, options.users, 'users')
+                    createOptions(bot as CacheBot, options.users, User, 'users')
                 )
             }),
             guilds: new GuildManager(bot as CacheBot, {
                 guilds: new CacheCollection(
-                    createOptions(bot as CacheBot, options.guilds, 'guilds')
+                    createOptions(bot as CacheBot, options.guilds, Guild, 'guild')
                 )
             }),
             channels: new ChannelManager(bot as CacheBot, {
                 channels: new CacheCollection(
-                    createOptions(bot as CacheBot, options.channels, 'channels')
+                    createOptions(bot as CacheBot, options.channels, Channel, 'guild')
                 )
             }),
             roles: new RoleManager(bot as CacheBot, {
                 roles: new CacheCollection(
-                    createOptions(bot as CacheBot, options.roles, 'roles')
+                    createOptions(bot as CacheBot, options.roles, Role, 'guild')
                 )
             }),
             members: new MemberManager(bot as CacheBot, {
                 members: new CacheCollection(
-                    createOptions(bot as CacheBot, options.members, 'members')
+                    createOptions(bot as CacheBot, options.members, Member, 'guild')
                 )
             }),
             messages: new MessageManager(bot as CacheBot, {
                 messages: new CacheCollection(
-                    createOptions(bot as CacheBot, options.messages, 'messages')
+                    createOptions(bot as CacheBot, options.messages, Message, 'channel')
                 )
             }),
         }
@@ -188,7 +189,7 @@ export function enableCachePlugin(bot: Bot, options: BotCacheOptions) {
     return overwriteTransformers(bot);
 }
 
-export interface CacheBot extends Omit<OverwrittenBot, 'transformers' | 'utils'|'helpers'> {
+export interface CacheBot extends Omit<OverwrittenBot, 'transformers' | 'utils' | 'helpers'> {
     members: MemberManager;
     emojis: EmojiManager;
     users: UserManager;
@@ -202,16 +203,16 @@ export interface CacheBot extends Omit<OverwrittenBot, 'transformers' | 'utils'|
     helpers: OverwrittenHelpers;
 }
 
-export interface OverwrittenTransformers extends Omit<Transformers,'snowflake'> {
+export interface OverwrittenTransformers extends Omit<Transformers, 'snowflake'> {
     snowflake(id: BigString): string;
 }
 
-export interface OverwrittenUtils extends Omit<HelperUtils,'snowflakeToBigint'>{
+export interface OverwrittenUtils extends Omit<HelperUtils, 'snowflakeToBigint'> {
     snowflakeToBigint(id: BigString): string;
 }
 
-export interface OverwrittenHelpers extends Omit<FinalHelpers,'fetchMembers'>{
-    fetchMembers(guildId: BigString, options?: Omit<RequestGuildMembers,'guildId'>): Promise<Member[]>;
+export interface OverwrittenHelpers extends Omit<FinalHelpers, 'fetchMembers'> {
+    fetchMembers(guildId: BigString, options?: Omit<RequestGuildMembers, 'guildId'>): Promise<Member[]>;
 }
 
 
@@ -234,13 +235,13 @@ export interface CacheOptions {
 }
 
 
-function createOptions(client: CacheBot, options: CacheOptions = {}, context: string) {
+function createOptions(client: CacheBot, options: CacheOptions = {}, transformerClass: any, context: string) {
     return {
         ...options,
         client,
         context,
         properties: options.properties ? addBaseProperties(options.properties) : createFakePropertyOptions(),
-        transformerClass: options.transformerClass,
+        transformerClass: options.transformerClass ?? transformerClass,
     };
 }
 

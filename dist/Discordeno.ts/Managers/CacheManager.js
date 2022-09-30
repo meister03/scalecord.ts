@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.enableCachePlugin = exports.overwriteTransformers = void 0;
 const CacheCollection_1 = require("../Structures/CacheCollection");
+const User_1 = require("../Structures/User");
 const ChannelManager_1 = require("./ChannelManager");
 const EmojiManager_1 = require("./EmojiManager");
 const GuildManager_1 = require("./GuildManager");
@@ -13,6 +14,7 @@ const MessageManager_1 = require("./MessageManager");
 const RoleManager_1 = require("./RoleManager");
 const UserManager_1 = require("./UserManager");
 const ActionManager_1 = __importDefault(require("./ActionManager"));
+const mod_1 = require("../mod");
 function overwriteTransformers(bot) {
     const { guild, user, member, channel, message, role, emoji, embed } = bot.transformers;
     const { fetchMembers } = bot.helpers;
@@ -128,37 +130,37 @@ exports.overwriteTransformers = overwriteTransformers;
 function enableCachePlugin(bot, options) {
     bot = Object.assign(bot, {
         emojis: new EmojiManager_1.EmojiManager(bot, {
-            emojis: new CacheCollection_1.CacheCollection(createOptions(bot, options.emojis, 'emojis'))
+            emojis: new CacheCollection_1.CacheCollection(createOptions(bot, options.emojis, mod_1.Emoji, 'guild'))
         }),
         users: new UserManager_1.UserManager(bot, {
-            users: new CacheCollection_1.CacheCollection(createOptions(bot, options.users, 'users'))
+            users: new CacheCollection_1.CacheCollection(createOptions(bot, options.users, User_1.User, 'users'))
         }),
         guilds: new GuildManager_1.GuildManager(bot, {
-            guilds: new CacheCollection_1.CacheCollection(createOptions(bot, options.guilds, 'guilds'))
+            guilds: new CacheCollection_1.CacheCollection(createOptions(bot, options.guilds, mod_1.Guild, 'guild'))
         }),
         channels: new ChannelManager_1.ChannelManager(bot, {
-            channels: new CacheCollection_1.CacheCollection(createOptions(bot, options.channels, 'channels'))
+            channels: new CacheCollection_1.CacheCollection(createOptions(bot, options.channels, mod_1.Channel, 'guild'))
         }),
         roles: new RoleManager_1.RoleManager(bot, {
-            roles: new CacheCollection_1.CacheCollection(createOptions(bot, options.roles, 'roles'))
+            roles: new CacheCollection_1.CacheCollection(createOptions(bot, options.roles, mod_1.Role, 'guild'))
         }),
         members: new MemberManager_1.MemberManager(bot, {
-            members: new CacheCollection_1.CacheCollection(createOptions(bot, options.members, 'members'))
+            members: new CacheCollection_1.CacheCollection(createOptions(bot, options.members, Member, 'guild'))
         }),
         messages: new MessageManager_1.MessageManager(bot, {
-            messages: new CacheCollection_1.CacheCollection(createOptions(bot, options.messages, 'messages'))
+            messages: new CacheCollection_1.CacheCollection(createOptions(bot, options.messages, mod_1.Message, 'channel'))
         }),
     });
     return overwriteTransformers(bot);
 }
 exports.enableCachePlugin = enableCachePlugin;
-function createOptions(client, options = {}, context) {
+function createOptions(client, options = {}, transformerClass, context) {
     return {
         ...options,
         client,
         context,
         properties: options.properties ? addBaseProperties(options.properties) : createFakePropertyOptions(),
-        transformerClass: options.transformerClass,
+        transformerClass: options.transformerClass ?? transformerClass,
     };
 }
 function createFakePropertyOptions() {

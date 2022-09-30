@@ -48,7 +48,7 @@ export interface CacheOptions {
     sweepFilter?: Function;
     forceSetFilter?: Function;
 }
-declare function createOptions(client: CacheBot, options: CacheOptions | undefined, context: string): {
+declare function createOptions(client: CacheBot, options: CacheOptions | undefined, transformerClass: any, context: string): {
     client: CacheBot;
     context: string;
     properties: string[] | {
