@@ -11,7 +11,7 @@ import { RoleManager } from "./RoleManager";
 import { UserManager } from "./UserManager";
 import Actions from './ActionManager'
 import { OverwrittenBot } from "../../Client";
-import { Channel, Emoji, Guild, Interaction, InteractionManager, Member, Message, Role } from "../mod";
+import { BaseCollection, Channel, Emoji, Guild, Interaction, InteractionManager, Member, Message, Role } from "../mod";
 
 export function overwriteTransformers(bot: CacheBot) {
     const { guild, user, member, channel, message, role, emoji, embed } = bot.transformers;
@@ -136,7 +136,7 @@ export function overwriteTransformers(bot: CacheBot) {
 
     // Overwrite Helpers
     bot.helpers.fetchMembers = async function (guildId, options) {
-        const promise = await fetchMembers(guildId, shardId, options);
+        const promise = await fetchMembers(guildId, options);
         const members = bot.members.chunkCache.get(guildId) || [];
         bot.members.chunkCache.delete(guildId)
         return members;
@@ -191,6 +191,8 @@ export function enableCachePlugin(bot: Bot, options: BotCacheOptions) {
             })
         }
     )
+    // @ts-expect-error
+    bot.members.chunkCache = new BaseCollection();
     return overwriteTransformers(bot);
 }
 

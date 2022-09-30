@@ -119,7 +119,7 @@ function overwriteTransformers(bot) {
     };
     // Overwrite Helpers
     bot.helpers.fetchMembers = async function (guildId, options) {
-        const promise = await fetchMembers(guildId, shardId, options);
+        const promise = await fetchMembers(guildId, options);
         const members = bot.members.chunkCache.get(guildId) || [];
         bot.members.chunkCache.delete(guildId);
         return members;
@@ -154,6 +154,8 @@ function enableCachePlugin(bot, options) {
             interactions: new CacheCollection_1.CacheCollection(createOptions(bot, options.interactions, mod_1.Interaction, 'interaction'))
         })
     });
+    // @ts-expect-error
+    bot.members.chunkCache = new mod_1.BaseCollection();
     return overwriteTransformers(bot);
 }
 exports.enableCachePlugin = enableCachePlugin;

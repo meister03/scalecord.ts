@@ -15,7 +15,7 @@ const ACTIVITIES = {
 export class Client extends createBot {
     constructor(options = {}, options2) {
         super(options, options2);
-        this.uptime = Date.now();
+        this.uptime = Number((Date.now()/60000).toFixed());
         this.user = new User(this, { id: options.botId });
         this._setActivity = async (content, activities) => {
             const status = activities.status;
