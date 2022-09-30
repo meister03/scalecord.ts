@@ -30,6 +30,7 @@ export * from './Structures/Websocket';
 
 
 export * from './Util/Component';
+export * from './Util/Collector';
 export * from './Util/Embed';
 export * from './Util/transformOptions';
 export * from './Util/Util';

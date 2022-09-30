@@ -44,6 +44,7 @@ __exportStar(require("./Structures/User"), exports);
 __exportStar(require("./Structures/Webhook"), exports);
 __exportStar(require("./Structures/Websocket"), exports);
 __exportStar(require("./Util/Component"), exports);
+__exportStar(require("./Util/Collector"), exports);
 __exportStar(require("./Util/Embed"), exports);
 __exportStar(require("./Util/transformOptions"), exports);
 __exportStar(require("./Util/Util"), exports);
