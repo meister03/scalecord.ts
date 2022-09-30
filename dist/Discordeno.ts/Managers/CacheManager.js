@@ -145,7 +145,7 @@ function enableCachePlugin(bot, options) {
             roles: new CacheCollection_1.CacheCollection(createOptions(bot, options.roles, mod_1.Role, 'guild'))
         }),
         members: new MemberManager_1.MemberManager(bot, {
-            members: new CacheCollection_1.CacheCollection(createOptions(bot, options.members, Member, 'guild'))
+            members: new CacheCollection_1.CacheCollection(createOptions(bot, options.members, mod_1.Member, 'guild'))
         }),
         messages: new MessageManager_1.MessageManager(bot, {
             messages: new CacheCollection_1.CacheCollection(createOptions(bot, options.messages, mod_1.Message, 'channel'))

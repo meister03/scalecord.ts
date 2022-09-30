@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { BigString, Bot, FinalHelpers, HelperUtils, Member, RequestGuildMembers, Transformers } from "discordeno";
+import { BigString, Bot, FinalHelpers, HelperUtils, Member as RawMember, RequestGuildMembers, Transformers } from "discordeno";
 import { CacheCollection } from "../Structures/CacheCollection";
 import { User } from "../Structures/User";
 import { ChannelManager } from "./ChannelManager";
@@ -212,7 +212,7 @@ export interface OverwrittenUtils extends Omit<HelperUtils, 'snowflakeToBigint'>
 }
 
 export interface OverwrittenHelpers extends Omit<FinalHelpers, 'fetchMembers'> {
-    fetchMembers(guildId: BigString, options?: Omit<RequestGuildMembers, 'guildId'>): Promise<Member[]>;
+    fetchMembers(guildId: BigString, options?: Omit<RequestGuildMembers, 'guildId'>): Promise<RawMember[]>;
 }
 
 

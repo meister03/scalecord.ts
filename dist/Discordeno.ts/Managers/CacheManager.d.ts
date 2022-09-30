@@ -1,4 +1,4 @@
-import { BigString, Bot, FinalHelpers, HelperUtils, Member, RequestGuildMembers, Transformers } from "discordeno";
+import { BigString, Bot, FinalHelpers, HelperUtils, Member as RawMember, RequestGuildMembers, Transformers } from "discordeno";
 import { User } from "../Structures/User";
 import { ChannelManager } from "./ChannelManager";
 import { EmojiManager } from "./EmojiManager";
@@ -30,7 +30,7 @@ export interface OverwrittenUtils extends Omit<HelperUtils, 'snowflakeToBigint'>
     snowflakeToBigint(id: BigString): string;
 }
 export interface OverwrittenHelpers extends Omit<FinalHelpers, 'fetchMembers'> {
-    fetchMembers(guildId: BigString, options?: Omit<RequestGuildMembers, 'guildId'>): Promise<Member[]>;
+    fetchMembers(guildId: BigString, options?: Omit<RequestGuildMembers, 'guildId'>): Promise<RawMember[]>;
 }
 export interface BotCacheOptions {
     emojis?: CacheOptions;
