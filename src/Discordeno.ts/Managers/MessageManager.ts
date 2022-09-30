@@ -49,7 +49,7 @@ public forge(data: RawMessage, options?: MessageOptions) {
 
     if (this.cache?.has(id)) return this.cache.get(id, { guild: this.guild, channel: this.channel });
 
-    if (id) {
+    if (typeof id === 'string' && id) {
       if (this.cache?.has(id)) return this.cache.get(id, { guild: this.guild });
 
       const msg = await this.client.helpers.getMessage(channelId, id);

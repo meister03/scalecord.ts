@@ -24,7 +24,7 @@ export class Interaction extends DestructObject {
 
         this.user = client.users.forge(data.user);
         this.guild = client.guilds.forge({ id: this.guildId } as any)  ?? this.client.guilds.forge({id: this.guildId} as any);
-        this.channel = client.channels.forge({ id: this.channelId } as any, { guild: this.guild });
+        this.channel = client.channels.forge({ id: this.channelId} as any, { guild: this.guild });
         this.member = this.guild.members.forge({ ...data.member, id: this.user.id, guildId: this.guildId as bigint } as any, { guild: this.guild, user: data.user });
 
         this.deferred = false;
