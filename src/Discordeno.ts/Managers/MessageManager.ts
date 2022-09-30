@@ -45,7 +45,7 @@ public forge(data: RawMessage, options?: MessageOptions) {
     options = transformOptions(options);
 
     const id = String(options.id);
-    const channelId = String(options.channelId);
+    const channelId = String(options.channelId || this.channel?.id);
 
     if (this.cache?.has(id)) return this.cache.get(id, { guild: this.guild, channel: this.channel });
 

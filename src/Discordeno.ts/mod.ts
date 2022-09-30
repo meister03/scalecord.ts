@@ -34,3 +34,5 @@ export * from './Util/Collector';
 export * from './Util/Embed';
 export * from './Util/transformOptions';
 export * from './Util/Util';
+
+export * from './types/shared';

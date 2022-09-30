@@ -48,3 +48,4 @@ __exportStar(require("./Util/Collector"), exports);
 __exportStar(require("./Util/Embed"), exports);
 __exportStar(require("./Util/transformOptions"), exports);
 __exportStar(require("./Util/Util"), exports);
+__exportStar(require("./types/shared"), exports);
