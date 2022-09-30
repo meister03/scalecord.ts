@@ -32,8 +32,8 @@ class Channel extends DestructObject_1.DestructObject {
         if (options.permissionOverwrites) {
             options.permissionOverwrites = (0, transformOptions_1.transformPermissionOverwrites)(options.permissionOverwrites);
         }
-        const guildId = options.guildId || String(this.guild?.id);
-        const channel = await this.client.helpers.editChannel(guildId, options);
+        const channelId = options.id || String(this.id);
+        const channel = await this.client.helpers.editChannel(channelId, options);
         return this.client.channels.forge(channel, { guild: this.guild });
     }
     async delete(options) {

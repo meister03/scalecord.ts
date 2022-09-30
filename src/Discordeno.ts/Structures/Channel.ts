@@ -37,12 +37,12 @@ export class Channel extends DestructObject {
         return this.client.channels.forge(channel, { guild: this.guild });
     }
 
-    public async edit(options: ModifyChannel & { reason?: string, guildId?: string }) {
+    public async edit(options: ModifyChannel & { reason?: string, id?: string }) {
         if (options.permissionOverwrites) {
             options.permissionOverwrites = transformPermissionOverwrites(options.permissionOverwrites);
         }
-        const guildId = options.guildId || String(this.guild?.id);
-        const channel = await this.client.helpers.editChannel(guildId, options);
+        const channelId = options.id || String(this.id);
+        const channel = await this.client.helpers.editChannel(channelId, options);
         return this.client.channels.forge(channel, { guild: this.guild });
     }
 

@@ -44,7 +44,7 @@ class RoleManager {
         }
         else if (this.client.roles.cache?.has(String(data.id))) {
             // @ts-expect-error
-            return this.client.roles.cache.get(data.id, { guild: options.guild });
+            return this.client.roles.cache.get(data.id, { guild: this.guild });
         }
         return new Role_1.Role(this.client, data, { guild: (options?.guild || this.guild) });
     }

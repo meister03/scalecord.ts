@@ -28,7 +28,7 @@ export declare class Channel extends DestructObject {
     }): Promise<Channel>;
     edit(options: ModifyChannel & {
         reason?: string;
-        guildId?: string;
+        id?: string;
     }): Promise<Channel>;
     delete(options: {
         id?: string;
