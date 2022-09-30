@@ -35,6 +35,8 @@ export class Component {
     required: Boolean;
     constructor(options: InputTextComponent | ButtonComponent | SelectMenuComponent) {
         // @ts-expect-error
+        if(!options) options = {};
+        // @ts-expect-error
         this.type = typeof options.type === "string" ? Constants[options.type as string] : options.type;
         // @ts-expect-error
         this.custom_id = options.custom_id ?? options.customId;

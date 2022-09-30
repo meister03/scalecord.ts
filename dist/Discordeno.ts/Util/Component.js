@@ -34,6 +34,9 @@ class Component {
     required;
     constructor(options) {
         // @ts-expect-error
+        if (!options)
+            options = {};
+        // @ts-expect-error
         this.type = typeof options.type === "string" ? Constants[options.type] : options.type;
         // @ts-expect-error
         this.custom_id = options.custom_id ?? options.customId;

@@ -14,6 +14,7 @@ export class Embed {
   footer: { iconUrl?: string | undefined; proxyIconUrl?: string | undefined; text: string; } | undefined;
   url: string | undefined;
   constructor(options: RawEmbed) {
+    if(!options) options = {};
     this.title = options.title;
     this.description = options.description;
     this.thumbnail = options.thumbnail;

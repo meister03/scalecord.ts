@@ -14,6 +14,8 @@ class Embed {
     footer;
     url;
     constructor(options) {
+        if (!options)
+            options = {};
         this.title = options.title;
         this.description = options.description;
         this.thumbnail = options.thumbnail;
