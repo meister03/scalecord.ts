@@ -17,12 +17,12 @@ export class ChannelManager {
     }
 
     async create(options: CreateGuildChannel & { reason?: string, guildId?: string }) {
-        if (!options.guildId) options.guildId = String(this.guild?.id);
+        if (!options.guildId && this.guild?.id) options.guildId = String(this.guild?.id);
         return new Channel(this.client, options as any, {guild: this.guild}).create(options);
     }
 
     async edit(options: ModifyChannel & { reason?: string, guildId?: string }) {
-        if (!options.guildId) options.guildId = String(this.guild?.id);
+        if (!options.guildId && this.guild?.id) options.guildId = String(this.guild?.id);
         return this.forge(options as any, { guild: this.guild as Guild }).edit(options);
     }
 

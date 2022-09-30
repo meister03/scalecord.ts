@@ -44,12 +44,12 @@ public forge(data: RawMessage, options?: MessageOptions) {
   public async fetch(options:  GetMessagesOptions & {channelId?: string, id?: String}) {
     options = transformOptions(options);
 
-    const id = String(options.id);
+    const id = options.id ? String(options.id) : undefined;
     const channelId = String(options.channelId || this.channel?.id);
 
-    if (this.cache?.has(id)) return this.cache.get(id, { guild: this.guild, channel: this.channel });
+    if (id && this.cache?.has(id)) return this.cache.get(id, { guild: this.guild, channel: this.channel });
 
-    if (typeof id === 'string' && id) {
+    if (id) {
       if (this.cache?.has(id)) return this.cache.get(id, { guild: this.guild });
 
       const msg = await this.client.helpers.getMessage(channelId, id);

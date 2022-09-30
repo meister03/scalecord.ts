@@ -15,12 +15,12 @@ class ChannelManager {
         this.guild = options.guild;
     }
     async create(options) {
-        if (!options.guildId)
+        if (!options.guildId && this.guild?.id)
             options.guildId = String(this.guild?.id);
         return new Channel_1.Channel(this.client, options, { guild: this.guild }).create(options);
     }
     async edit(options) {
-        if (!options.guildId)
+        if (!options.guildId && this.guild?.id)
             options.guildId = String(this.guild?.id);
         return this.forge(options, { guild: this.guild }).edit(options);
     }

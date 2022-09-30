@@ -22,7 +22,7 @@ class RoleManager {
     async fetch(options) {
         options = (0, transformOptions_1.transformOptions)(options);
         const guildId = String(options.guildId || this.guild?.id);
-        const roleId = String(options.id);
+        const roleId = options.id ? String(options.id) : undefined;
         // @ts-expect-error
         if (this.cache?.has(roleId))
             return this.cache.get(roleId, { guild: this.guild });
