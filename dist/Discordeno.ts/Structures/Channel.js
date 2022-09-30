@@ -51,8 +51,8 @@ class Channel extends DestructObject_1.DestructObject {
     }
     async send(options) {
         options = (0, transformOptions_1.transformOptions)(options, { content: true });
-        if (options.attachments) {
-            options.file = (0, transformOptions_1.transformAttachments)(options.attachments);
+        if (options.files || options.attachments) {
+            options.file = (0, transformOptions_1.transformAttachments)(options.files || options.attachments);
         }
         if (!options.channelId)
             options.channelId = String(this.id);

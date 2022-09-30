@@ -26,11 +26,11 @@ export class Message extends DestructObject {
     this.member = this.guild.members.forge({ ...data.member, id: this.authorId } as any, { guild: this.guild, user: data.author });
   }
 
-  public async edit(options: EditMessage & { attachments?: AttachmentBlobFormat, files?: any, channelId?: string, id?: string}) {
+  public async edit(options: EditMessage & { attachments?: AttachmentBlobFormat, files?: AttachmentBlobFormat, channelId?: string, id?: string}) {
     options = transformOptions(options, {content: true});
 
     if(options.files|| options.attachments){
-      options.file = transformAttachments(options.files || options.attachments);
+      options.file = transformAttachments((options.files || options.attachments) as AttachmentBlobFormat);
     }
 
     const channelId = String(options.channelId || this.channelId);
@@ -45,11 +45,11 @@ export class Message extends DestructObject {
     return this.client.helpers.editMessage(channelId, id, options);
   }
 
-  public async reply(options: CreateMessage & { attachments?: AttachmentBlobFormat, files?: any, channelId?: string, messageReference?: {messageId: string, guildId: string, channelId: string} }) {
+  public async reply(options: CreateMessage & { attachments?: AttachmentBlobFormat, files?: AttachmentBlobFormat, channelId?: string, messageReference?: {messageId: string, guildId: string, channelId: string} }) {
     options = transformOptions(options, {content: true});
     const channelId = String(options.channelId || this.channelId);
     if(options.files || options.attachments){
-      options.file = transformAttachments(options.files || options.attachments);
+      options.file = transformAttachments((options.files || options.attachments) as AttachmentBlobFormat);
     }
 
     if (!options.messageReference) {

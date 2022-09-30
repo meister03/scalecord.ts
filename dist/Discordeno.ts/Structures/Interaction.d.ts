@@ -32,6 +32,7 @@ export declare class Interaction extends DestructObject {
     }): Promise<void>;
     reply(options: InteractionCallbackData & {
         ephemeral?: Boolean;
+        files?: AttachmentBlobFormat;
         attachments?: AttachmentBlobFormat;
     }): Promise<void>;
     popupModal(options: InteractionCallbackData & {
@@ -40,6 +41,7 @@ export declare class Interaction extends DestructObject {
     }): Promise<void>;
     editReply(options: InteractionCallbackData & {
         ephemeral?: Boolean;
+        files?: AttachmentBlobFormat;
         attachments?: AttachmentBlobFormat;
     }): Promise<import("discordeno/transformers").Message | undefined>;
     deleteReply(): Promise<void>;
@@ -49,6 +51,7 @@ export declare class Interaction extends DestructObject {
     }): Promise<void>;
     update(options: InteractionCallbackData & {
         ephemeral?: Boolean;
+        files?: AttachmentBlobFormat;
         attachments?: AttachmentBlobFormat;
     }): Promise<void>;
 }

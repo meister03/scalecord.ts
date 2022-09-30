@@ -1,6 +1,6 @@
 {
     "name": "scalecord.ts",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Powerful Discord API library based on Discordeno components, allowing vertical and horizontal scaling.",
     "main": "dist/mod.js",
     "types": "dist/mod.d.ts",

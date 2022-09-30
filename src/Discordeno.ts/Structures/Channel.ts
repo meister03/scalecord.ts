@@ -59,11 +59,11 @@ export class Channel extends DestructObject {
         return this.client.channels.fetch(options) as Promise<Channel>;
     }
 
-    public async send(options: CreateMessage & { attachments?: AttachmentBlobFormat, channelId?: string }) {
+    public async send(options: CreateMessage & { files: AttachmentBlobFormat, attachments?: AttachmentBlobFormat, channelId?: string }) {
         options = transformOptions(options, { content: true });
 
-        if (options.attachments) {
-            options.file = transformAttachments(options.attachments);
+        if (options.files || options.attachments) {
+            options.file = transformAttachments( options.files || options.attachments);
         }
 
         if (!options.channelId) options.channelId = String(this.id);

@@ -38,6 +38,7 @@ export declare class Channel extends DestructObject {
         id: string;
     }): Promise<Channel>;
     send(options: CreateMessage & {
+        files: AttachmentBlobFormat;
         attachments?: AttachmentBlobFormat;
         channelId?: string;
     }): Promise<any>;

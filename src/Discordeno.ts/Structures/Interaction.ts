@@ -63,7 +63,7 @@ export class Interaction extends DestructObject {
         return this.client.helpers.sendInteractionResponse(this._raw.id, this._raw.token, payload);
     }
 
-    public async reply(options: InteractionCallbackData & {ephemeral?: Boolean, attachments?: AttachmentBlobFormat }){
+    public async reply(options: InteractionCallbackData & {ephemeral?: Boolean, files?: AttachmentBlobFormat, attachments?: AttachmentBlobFormat }){
         options = transformOptions(options, {content: true});
         if (options.ephemeral) {
             delete options.ephemeral;
@@ -71,8 +71,8 @@ export class Interaction extends DestructObject {
             this.ephemeral = true;
         }
 
-        if (options.attachments) {
-            options.file = transformAttachments(options.attachments);
+        if (options.files || options.attachments) {
+            options.file = transformAttachments((options.attachments || options.files) as AttachmentBlobFormat);
         }
 
         const payload: InteractionResponse = {data: options, type: InteractionResponseTypes.ChannelMessageWithSource}
@@ -87,11 +87,11 @@ export class Interaction extends DestructObject {
         return this.client.helpers.sendInteractionResponse(this._raw.id, this._raw.token, payload);
     }
 
-    public async editReply(options: InteractionCallbackData & {ephemeral?: Boolean, attachments?: AttachmentBlobFormat }){
+    public async editReply(options: InteractionCallbackData & {ephemeral?: Boolean, files?: AttachmentBlobFormat ,attachments?: AttachmentBlobFormat }){
         options = transformOptions(options, {content: true});
 
-        if (options.attachments) {
-            options.file = transformAttachments(options.attachments);
+        if (options.attachments || options.files) {
+            options.file = transformAttachments((options.attachments || options.files) as AttachmentBlobFormat);
         }
         this.replied = true;
         return this.client.helpers.editOriginalInteractionResponse(this._raw.token, options);
@@ -105,10 +105,10 @@ export class Interaction extends DestructObject {
         return this.reply(options);
     }
 
-    public async update(options: InteractionCallbackData & {ephemeral?: Boolean, attachments?: AttachmentBlobFormat }){
+    public async update(options: InteractionCallbackData & {ephemeral?: Boolean, files?: AttachmentBlobFormat, attachments?: AttachmentBlobFormat }){
         options = transformOptions(options, {content: true});
-        if (options.attachments) {
-            options.file = transformAttachments(options.attachments);
+        if (options.attachments || options.files) {
+            options.file = transformAttachments((options.files || options.attachments) as AttachmentBlobFormat);
         }
 
         const payload: InteractionResponse = {data: options, type: InteractionResponseTypes.UpdateMessage}

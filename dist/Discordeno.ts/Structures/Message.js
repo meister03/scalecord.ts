@@ -24,7 +24,7 @@ class Message extends DestructObject_1.DestructObject {
     async edit(options) {
         options = (0, transformOptions_1.transformOptions)(options, { content: true });
         if (options.files || options.attachments) {
-            options.file = (0, transformOptions_1.transformAttachments)(options.files || options.attachments);
+            options.file = (0, transformOptions_1.transformAttachments)((options.files || options.attachments));
         }
         const channelId = String(options.channelId || this.channelId);
         const id = String(options.id || this.id);
@@ -39,7 +39,7 @@ class Message extends DestructObject_1.DestructObject {
         options = (0, transformOptions_1.transformOptions)(options, { content: true });
         const channelId = String(options.channelId || this.channelId);
         if (options.files || options.attachments) {
-            options.file = (0, transformOptions_1.transformAttachments)(options.files || options.attachments);
+            options.file = (0, transformOptions_1.transformAttachments)((options.files || options.attachments));
         }
         if (!options.messageReference) {
             options.messageReference = { messageId: String(this.id), channelId: String(this.channel.id), guildId: String(this.guild.id), failIfNotExists: true };

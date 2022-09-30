@@ -16,7 +16,7 @@ const ACTIVITIES = {
 class Client extends mod_1.createBot {
     constructor(options = {}, options2) {
         super(options, options2);
-        this.uptime = Number((Date.now() / 60000).toFixed());
+        this.uptime = Number((Date.now() / 1000).toFixed());
         this.user = new User_1.User(this, { id: options.botId });
         this._setActivity = async (content, activities) => {
             const status = activities.status;
@@ -36,11 +36,11 @@ class Client extends mod_1.createBot {
         };
         this._setApplicationCommands = async (commands, guildId, commandId) => {
             if (!Array.isArray(commands)) {
-                return await this.helpers.upsertApplicationCommand(commandId, (0, mod_2.transformApplicationCommand)(commands), guildId);
+                return await this.helpers.editGlobalApplicationCommand(commandId, (0, mod_2.transformApplicationCommand)(commands), guildId);
             }
             const ddCommands = [];
             commands.forEach(x => ddCommands.push((0, mod_2.transformApplicationCommand)(x)));
-            return await this.helpers.upsertApplicationCommands(ddCommands, guildId, commandId);
+            return await this.helpers.upsertGlobalApplicationCommands(ddCommands, guildId, commandId);
         };
         this.patchMe = (options = {}) => {
             this.user = new User_1.User(this, options);

@@ -59,8 +59,8 @@ class Interaction extends DestructObject_1.DestructObject {
             options.flags = options.flags ? options.flags | 64 : 64;
             this.ephemeral = true;
         }
-        if (options.attachments) {
-            options.file = (0, transformOptions_1.transformAttachments)(options.attachments);
+        if (options.files || options.attachments) {
+            options.file = (0, transformOptions_1.transformAttachments)((options.attachments || options.files));
         }
         const payload = { data: options, type: types_1.InteractionResponseTypes.ChannelMessageWithSource };
         this.replied = true;
@@ -73,8 +73,8 @@ class Interaction extends DestructObject_1.DestructObject {
     }
     async editReply(options) {
         options = (0, transformOptions_1.transformOptions)(options, { content: true });
-        if (options.attachments) {
-            options.file = (0, transformOptions_1.transformAttachments)(options.attachments);
+        if (options.attachments || options.files) {
+            options.file = (0, transformOptions_1.transformAttachments)((options.attachments || options.files));
         }
         this.replied = true;
         return this.client.helpers.editOriginalInteractionResponse(this._raw.token, options);
@@ -87,8 +87,8 @@ class Interaction extends DestructObject_1.DestructObject {
     }
     async update(options) {
         options = (0, transformOptions_1.transformOptions)(options, { content: true });
-        if (options.attachments) {
-            options.file = (0, transformOptions_1.transformAttachments)(options.attachments);
+        if (options.attachments || options.files) {
+            options.file = (0, transformOptions_1.transformAttachments)((options.files || options.attachments));
         }
         const payload = { data: options, type: types_1.InteractionResponseTypes.UpdateMessage };
         this.replied = true;

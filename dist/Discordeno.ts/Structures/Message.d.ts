@@ -19,13 +19,13 @@ export declare class Message extends DestructObject {
     }, options: MessageOptions);
     edit(options: EditMessage & {
         attachments?: AttachmentBlobFormat;
-        files?: any;
+        files?: AttachmentBlobFormat;
         channelId?: string;
         id?: string;
     }): Promise<RawMessage>;
     reply(options: CreateMessage & {
         attachments?: AttachmentBlobFormat;
-        files?: any;
+        files?: AttachmentBlobFormat;
         channelId?: string;
         messageReference?: {
             messageId: string;
