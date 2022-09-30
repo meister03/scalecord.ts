@@ -102,7 +102,7 @@ export class Interaction extends DestructObject {
     }
 
     public async followUp(options: InteractionCallbackData & { ephemeral?: Boolean | undefined; attachments?: AttachmentBlobFormat | undefined; }){
-        return this.editReply(options);
+        return this.reply(options);
     }
 
     public async update(options: InteractionCallbackData & {ephemeral?: Boolean, attachments?: AttachmentBlobFormat }){

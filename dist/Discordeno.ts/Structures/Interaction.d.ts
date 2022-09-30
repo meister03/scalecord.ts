@@ -46,7 +46,7 @@ export declare class Interaction extends DestructObject {
     followUp(options: InteractionCallbackData & {
         ephemeral?: Boolean | undefined;
         attachments?: AttachmentBlobFormat | undefined;
-    }): Promise<import("discordeno/transformers").Message | undefined>;
+    }): Promise<void>;
     update(options: InteractionCallbackData & {
         ephemeral?: Boolean;
         attachments?: AttachmentBlobFormat;

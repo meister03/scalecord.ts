@@ -83,7 +83,7 @@ class Interaction extends DestructObject_1.DestructObject {
         return this.client.helpers.deleteOriginalInteractionResponse(this._raw.token);
     }
     async followUp(options) {
-        return this.editReply(options);
+        return this.reply(options);
     }
     async update(options) {
         options = (0, transformOptions_1.transformOptions)(options, { content: true });
