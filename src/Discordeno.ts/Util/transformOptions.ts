@@ -1,7 +1,7 @@
 import { OverwriteReadable } from "discordeno/types";
 import { Permissions } from "../Structures/Permissions";
 import { applicationCommandOptionsTypes, applicationCommandTypes, AttachmentBlobFormat, permissionOverwrites, permissionOverwritesTypes } from "../types/shared";
-
+import { Blob } from 'buffer';
 export function transformOptions<V>(options: object | string, defaults?: {content?: Boolean, reason?: Boolean}) {
     if (defaults?.content) {
         if (typeof options === "string") options = { content: options };

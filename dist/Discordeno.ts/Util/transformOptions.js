@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.transformApplicationCommandOptions = exports.transformApplicationCommand = exports.transformPermissionOverwrites = exports.transformAttachments = exports.transformOptions = void 0;
 const Permissions_1 = require("../Structures/Permissions");
 const shared_1 = require("../types/shared");
+const buffer_1 = require("buffer");
 function transformOptions(options, defaults) {
     if (defaults?.content) {
         if (typeof options === "string")
@@ -20,7 +21,7 @@ exports.transformOptions = transformOptions;
 function transformAttachments(attachments) {
     return attachments.map(a => {
         // @ts-expect-error
-        const file = { blob: new Blob((a.blob ?? a.attachment)), name: a.name };
+        const file = { blob: new buffer_1.Blob((a.blob ?? a.attachment)), name: a.name };
         return file;
     });
 }
