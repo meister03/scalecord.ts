@@ -11,7 +11,7 @@ import { RoleManager } from "./RoleManager";
 import { UserManager } from "./UserManager";
 import Actions from './ActionManager'
 import { OverwrittenBot } from "../../Client";
-import { Channel, Emoji, Guild, Member, Message, Role } from "../mod";
+import { Channel, Emoji, Guild, Interaction, InteractionManager, Member, Message, Role } from "../mod";
 
 export function overwriteTransformers(bot: CacheBot) {
     const { guild, user, member, channel, message, role, emoji, embed } = bot.transformers;
@@ -184,6 +184,11 @@ export function enableCachePlugin(bot: Bot, options: BotCacheOptions) {
                     createOptions(bot as CacheBot, options.messages, Message, 'channel')
                 )
             }),
+            interactions: new InteractionManager(bot as CacheBot, {
+                interactions: new CacheCollection(
+                    createOptions(bot as CacheBot, options.interactions, Interaction, 'interaction')
+                )
+            })
         }
     )
     return overwriteTransformers(bot);
@@ -197,6 +202,7 @@ export interface CacheBot extends Omit<OverwrittenBot, 'transformers' | 'utils' 
     channels: ChannelManager;
     roles: RoleManager;
     messages: MessageManager;
+    interactions: InteractionManager;
     user: User;
     transformers: OverwrittenTransformers;
     utils: OverwrittenUtils;
@@ -224,6 +230,7 @@ export interface BotCacheOptions {
     roles?: CacheOptions;
     messages?: CacheOptions;
     members?: CacheOptions;
+    interactions?: CacheOptions;
 }
 
 export interface CacheOptions {

@@ -150,6 +150,9 @@ function enableCachePlugin(bot, options) {
         messages: new MessageManager_1.MessageManager(bot, {
             messages: new CacheCollection_1.CacheCollection(createOptions(bot, options.messages, mod_1.Message, 'channel'))
         }),
+        interactions: new mod_1.InteractionManager(bot, {
+            interactions: new CacheCollection_1.CacheCollection(createOptions(bot, options.interactions, mod_1.Interaction, 'interaction'))
+        })
     });
     return overwriteTransformers(bot);
 }

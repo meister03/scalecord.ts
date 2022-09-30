@@ -8,6 +8,7 @@ import { MessageManager } from "./MessageManager";
 import { RoleManager } from "./RoleManager";
 import { UserManager } from "./UserManager";
 import { OverwrittenBot } from "../../Client";
+import { InteractionManager } from "../mod";
 export declare function overwriteTransformers(bot: CacheBot): CacheBot;
 export declare function enableCachePlugin(bot: Bot, options: BotCacheOptions): CacheBot;
 export interface CacheBot extends Omit<OverwrittenBot, 'transformers' | 'utils' | 'helpers'> {
@@ -18,6 +19,7 @@ export interface CacheBot extends Omit<OverwrittenBot, 'transformers' | 'utils' 
     channels: ChannelManager;
     roles: RoleManager;
     messages: MessageManager;
+    interactions: InteractionManager;
     user: User;
     transformers: OverwrittenTransformers;
     utils: OverwrittenUtils;
@@ -40,6 +42,7 @@ export interface BotCacheOptions {
     roles?: CacheOptions;
     messages?: CacheOptions;
     members?: CacheOptions;
+    interactions?: CacheOptions;
 }
 export interface CacheOptions {
     properties?: string[];
