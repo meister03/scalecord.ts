@@ -16,13 +16,13 @@ class MemberManager {
     }
     forge(data, options) {
         data = (0, transformOptions_1.transformOptions)(data);
-        if (options.guild && data.id) {
+        if (options?.guild && data.id) {
             if (options.guild.members.cache?.has(String(data.id))) {
                 const user = this.client.users.cache._get(data.id);
                 return options.guild.members.cache.get(data.id, { guild: options.guild, user });
             }
         }
-        return new Member_1.Member(this.client, data, { guild: options.guild, user: options.user });
+        return new Member_1.Member(this.client, data, { guild: (options?.guild || this.guild), user: options?.user });
     }
     forgeManager(options) {
         return new MemberManager(this.client, { guild: options.guild, members: options.members });

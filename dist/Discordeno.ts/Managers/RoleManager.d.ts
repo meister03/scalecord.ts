@@ -19,7 +19,7 @@ export declare class RoleManager {
         id?: string;
         guildId?: string;
     }): Promise<any>;
-    forge(data: RawRole, options: {
+    forge(data: RawRole, options?: {
         guild: Guild;
     }): any;
     add(options: {

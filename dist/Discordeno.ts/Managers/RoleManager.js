@@ -36,7 +36,7 @@ class RoleManager {
     }
     forge(data, options) {
         data = (0, transformOptions_1.transformOptions)(data);
-        if (options.guild) {
+        if (options?.guild) {
             if (options.guild.roles.cache?.has(String(data.id))) {
                 // @ts-expect-error
                 return options.guild.roles.cache.get(data.id, { guild: options.guild });
@@ -46,7 +46,7 @@ class RoleManager {
             // @ts-expect-error
             return this.client.roles.cache.get(data.id, { guild: options.guild });
         }
-        return new Role_1.Role(this.client, data, { guild: options.guild });
+        return new Role_1.Role(this.client, data, { guild: (options?.guild || this.guild) });
     }
     async add(options) {
         options = (0, transformOptions_1.transformOptions)(options);

@@ -20,7 +20,8 @@ class Member extends DestructObject_1.DestructObject {
             data.user = options.user;
         this.user = client.users.forge(data.user ?? options.user);
         // Shallow Copy RoleIds befor overwrite
-        const roleIds = data.roles ? data.roles.slice(0) : [];
+        // @ts-expect-error
+        const roleIds = typeof data.roles === 'array' ? data.roles.slice(0) : (data.roles ? Array.from(data.roles.values()) : []);
         this.roles = client.roles.forgeManager({
             guild: this.guild,
             member: this,
@@ -100,7 +101,7 @@ function getRoles(client, roles, guild) {
         return new BaseCollection_1.BaseCollection();
     const memberRoles = new BaseCollection_1.BaseCollection();
     roles.forEach((m) => {
-        const role = client.roles.forge({ id: m }, { guild: guild });
+        const role = client.roles.forge(m, { guild: guild });
         if (role)
             memberRoles.set(role.id, role);
     });

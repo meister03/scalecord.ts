@@ -43,10 +43,10 @@ export class RoleManager {
         return roleId ? roles.get(roleId) : roles;
     }
 
-    public forge(data: RawRole, options: {guild: Guild}){
+    public forge(data: RawRole, options?: {guild: Guild}){
         data = transformOptions(data);
 
-        if (options.guild) {
+        if (options?.guild) {
             if (options.guild.roles.cache?.has(String(data.id))) {
                 // @ts-expect-error
                 return options.guild.roles.cache.get(data.id, { guild: options.guild });
@@ -55,7 +55,7 @@ export class RoleManager {
             // @ts-expect-error
             return this.client.roles.cache.get(data.id, { guild: options.guild }) as Role;
         }
-        return new Role(this.client, data, { guild: options.guild });
+        return new Role(this.client, data, { guild: (options?.guild || this.guild) });
     }
 
     public async add(options: {id: string, memberId?: string, guildId?: string, reason?: string}) {

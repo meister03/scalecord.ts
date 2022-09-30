@@ -9,7 +9,7 @@ export declare class MemberManager {
     cache: CacheCollection<Member, RawMember>;
     guild: Guild | undefined;
     constructor(client: CacheBot, options: MemberManagerOptions);
-    forge(data: RawMember, options: {
+    forge(data: RawMember, options?: {
         user?: RawUser;
         guild?: Guild;
     }): Member;

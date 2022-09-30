@@ -18,15 +18,15 @@ export class MemberManager {
         this.guild = options.guild;
     }
 
-    public forge(data: RawMember, options: {user?: RawUser, guild?: Guild}) {
+    public forge(data: RawMember, options?: {user?: RawUser, guild?: Guild}) {
         data = transformOptions(data);
-        if (options.guild && data.id) {
+        if (options?.guild && data.id) {
             if (options.guild.members.cache?.has(String(data.id))) {
                 const user = this.client.users.cache._get(data.id);
                 return options.guild.members.cache.get(data.id, { guild: options.guild, user }) as Member;
             }
         }
-        return new Member(this.client, data, { guild: options.guild, user: options.user as User});
+        return new Member(this.client, data, { guild: (options?.guild || this.guild), user: options?.user as User});
     }
 
     public forgeManager(options: MemberManagerOptions) {
