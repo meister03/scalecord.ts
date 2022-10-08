@@ -59,7 +59,10 @@ export function GUILD_EMOJIS_UPDATE(bot, packet, shardId) {
 export function GUILD_MEMBER_ADD(bot, packet, shardId) {
   const guild = bot.guilds.cache.base({ id: packet.d.guild_id });
 
-  if (!guild.memberCount) guild.memberCount = 0;
+  const raw_guild = bot.guilds.cache._get(packet.d.guild_id) || {memberCount: 0};
+
+
+  guild.memberCount = raw_guild.memberCount || 0;
   guild.memberCount++;
 
   guild.members = [
@@ -72,7 +75,10 @@ export function GUILD_MEMBER_REMOVE(bot, packet, shardId) {
   const guild = bot.guilds.cache._get(packet.d.guild_id);
   if (!guild) return;
 
-  if (!guild.memberCount) guild.memberCount = 0;
+  const raw_guild = bot.guilds.cache._get(packet.d.guild_id) || {memberCount: 0};
+
+
+  guild.memberCount = raw_guild.memberCount || 0;
   guild.memberCount--;
 
   guild.members?.delete(bot.transformers.snowflake(packet.d.user.id));

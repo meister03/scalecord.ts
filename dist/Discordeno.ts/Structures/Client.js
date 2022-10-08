@@ -16,7 +16,7 @@ const ACTIVITIES = {
 class Client extends mod_1.createBot {
     constructor(options = {}, options2) {
         super(options, options2);
-        this.uptime = Number((Date.now() / 1000).toFixed());
+        this._uptime = Date.now();
         this.user = new User_1.User(this, { id: options.botId });
         this._setActivity = async (content, activities) => {
             const status = activities.status;
@@ -49,6 +49,9 @@ class Client extends mod_1.createBot {
             this.application = { commands: { set: this._setApplicationCommands } };
             return this.user;
         };
+    }
+    get uptime() {
+        Date.now() - this._uptime;
     }
 }
 exports.Client = Client;
