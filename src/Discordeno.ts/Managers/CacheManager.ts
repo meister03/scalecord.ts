@@ -58,7 +58,7 @@ export function overwriteTransformers(bot: CacheBot) {
         const guildId = payload.guildId ?? payload.channel.guild_id;
         const guild = bot.guilds.cache.base({ id: guildId });
         const result = channel(bot, payload);
-        guild.channels = [result];
+        guild.channels = [createClone(result)];
         bot.guilds.cache.patch(guild.id, guild);
         return result;
     };
@@ -67,7 +67,7 @@ export function overwriteTransformers(bot: CacheBot) {
         const channel = bot.channels.cache.base({ id: payload.channel_id });
         const result = message(bot, payload);
 
-        channel.messages = [result];
+        channel.messages = [createClone(result)];
 
         bot.channels.cache.patch(channel.id, channel);
 
@@ -99,7 +99,7 @@ export function overwriteTransformers(bot: CacheBot) {
         const guildId = payload.guildId ?? payload.role?.guild_id;
         const guild = bot.guilds.cache.base({ id: guildId });
         const result = role(bot, payload);
-        guild.roles = [result];
+        guild.roles = [createClone(result)];
         bot.guilds.cache.patch(guild.id, guild);
         return result;
     };
@@ -108,21 +108,21 @@ export function overwriteTransformers(bot: CacheBot) {
         if (!guildId) return emoji(bot, payload);
         const result = emoji(bot, payload);
         const guild = bot.guilds.cache.base({ id: guildId });
-        guild.emojis = [result];
+        guild.emojis = [createClone(result)];
         bot.guilds.cache.patch(guild.id, guild);
         return result;
     };
     bot.transformers.member = function (_, payload, guildId, userId) {
         const result = member(bot, payload, guildId, userId);
         const guild = bot.guilds.cache.base({ id: guildId });
-        guild.members = [result];
+        guild.members = [createClone(result)];
         bot.guilds.cache.patch(guild.id, guild);
         return result;
     }
 
     bot.transformers.user = function (_, payload) {
         const result = user(bot, payload);
-        bot.users.cache.patch(result.id, result);
+        bot.users.cache.patch(result.id, createClone(result));
         return result;
     };
 
@@ -268,4 +268,8 @@ function addBaseProperties(properties: string[]) {
     properties = [...properties, "id", "guildId"];
     properties = Array.from(new Set(properties));
     return properties;
+}
+
+function createClone(obj: Object) {
+    return {...obj};
 }

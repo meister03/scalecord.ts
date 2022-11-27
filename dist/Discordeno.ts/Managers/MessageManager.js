@@ -20,7 +20,7 @@ class MessageManager {
         data = (0, transformOptions_1.transformOptions)(data);
         const guild = options?.guild || this.guild;
         const channel = options?.channel || this.channel;
-        if (channel) {
+        if (channel && channel?.messages?.cache) {
             if (channel.messages.cache?.has(String(data.id))) {
                 return channel.messages.cache.get(data.id, { guild, channel });
             }
