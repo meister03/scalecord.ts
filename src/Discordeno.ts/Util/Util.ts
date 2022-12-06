@@ -46,7 +46,7 @@ export function getEmoji(str: string){
   if (str.includes('%')) return decodeURIComponent(str);
   if (!str.includes(':')) return { animated: false, name: str, id: null };
   // @ts-expect-error
-  const [_, animated, name, id] = /^<(a?):([a-z0-9_-]{2,}):(\d{18})>/i.exec(str)
+  const [_, animated, name, id] = /^<(a?):([a-z0-9_-]{2,}):(\d{21})>/i.exec(str)
   return { animated: new Boolean(animated), name, id } as {animated?: Boolean, name?: string, id: string};
 }
 

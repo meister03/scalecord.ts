@@ -166,7 +166,7 @@ export function enableCachePlugin(bot: Bot, options: BotCacheOptions) {
             }),
             channels: new ChannelManager(bot as CacheBot, {
                 channels: new CacheCollection(
-                    createOptions(bot as CacheBot, options.channels, Channel, 'guild')
+                    createOptions(bot as CacheBot, options.channels, Channel, 'channel')
                 )
             }),
             roles: new RoleManager(bot as CacheBot, {

@@ -20,12 +20,13 @@ class MessageManager {
         data = (0, transformOptions_1.transformOptions)(data);
         const guild = options?.guild || this.guild;
         const channel = options?.channel || this.channel;
+        console.log(channel?.messages.cache);
         if (channel && channel?.messages?.cache) {
-            if (channel.messages.cache?.has(String(data.id))) {
+            if (channel.messages.cache?.has?.(String(data.id))) {
                 return channel.messages.cache.get(data.id, { guild, channel });
             }
         }
-        else if (this.client.messages.cache?.has(String(data.id))) {
+        else if (this.client.messages.cache?.has?.(String(data.id))) {
             return this.client.messages.cache.get(data.id, { guild, channel });
         }
         return new Message_1.Message(this.client, data, { guild: guild, channel });

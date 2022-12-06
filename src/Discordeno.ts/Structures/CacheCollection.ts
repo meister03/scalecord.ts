@@ -31,6 +31,7 @@ export class CacheCollection<V, rawStructure> extends BaseCollection<string, raw
         if (typeof key === "string") key = this.client.transformers.snowflake(key);
         if (options.removeProps === undefined) options.removeProps = true;
         if (this.properties?._cacheAll) options.removeProps = false;
+        
         const v = options.removeProps
             ? this.properties
                 .reduce((obj2, key) => {
@@ -146,7 +147,6 @@ export class CacheCollection<V, rawStructure> extends BaseCollection<string, raw
             });
             v.members = members;
         }
-
         return this._set(k, v, options);
     }
 
