@@ -75,7 +75,7 @@ class Permissions {
             if (!isNaN(bit))
                 return typeof defaultBit === "bigint" ? BigInt(bit) : BigInt(Number(bit));
         }
-        console.log(bit);
+        //console.log(bit)
         throw new Error("Invalid Permission Bit");
     }
     freeze() {

@@ -81,7 +81,7 @@ export class Permissions {
         if (typeof Permissions.FLAGS[bit] !== "undefined") return Permissions.FLAGS[bit];
         if (!isNaN(bit)) return typeof defaultBit === "bigint" ? BigInt(bit) : BigInt(Number(bit));
       }
-      console.log(bit)
+      //console.log(bit)
       throw new Error("Invalid Permission Bit");
     }
   
