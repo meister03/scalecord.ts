@@ -87,7 +87,7 @@ exports.transformPermissionOverwrites = transformPermissionOverwrites;
 function transformApplicationCommand(options) {
     return {
         ...options,
-        type: shared_1.applicationCommandTypes[options.type] || options.type,
+        type: typeof options.type === "string" ? shared_1.applicationCommandTypes[options.type] : options.type,
         options: options.options ? transformApplicationCommandOptions(options.options) : undefined
     };
 }
@@ -98,7 +98,7 @@ function transformApplicationCommandOptions(options) {
     return options.map(option => {
         return {
             ...option,
-            type: shared_1.applicationCommandOptionsTypes[option.type] || option.type,
+            type: typeof option.type === "string" ? shared_1.applicationCommandOptionsTypes[option.type] : option.type,
             options: option.options ? transformApplicationCommandOptions(option.options) : undefined,
         };
     });

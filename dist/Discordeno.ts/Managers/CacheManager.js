@@ -59,8 +59,6 @@ function overwriteTransformers(bot) {
     bot.transformers.message = function (_, payload) {
         const channel = bot.channels.cache.base({ id: payload.channel_id });
         const result = message(bot, payload);
-        channel.messages = [createClone(result)];
-        bot.channels.cache.patch(channel.id, channel);
         if (!result.author) {
             const author = {
                 id: payload.author.id,
@@ -79,6 +77,8 @@ function overwriteTransformers(bot) {
         if (payload.mentions) {
             result.mentionedUsers = payload.mentions?.map((x) => bot.transformers.user(bot, x));
         }
+        channel.messages = [createClone(result)];
+        bot.channels.cache.patch(channel.id, channel);
         return result;
     };
     bot.transformers.role = function (_, payload) {

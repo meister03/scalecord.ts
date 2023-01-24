@@ -80,7 +80,7 @@ export function transformPermissionOverwrites(permissionOverwrites: permissionOv
 export function transformApplicationCommand(options) {
     return {
         ...options,
-        type: applicationCommandTypes[options.type] || options.type,
+        type: typeof options.type === "string" ? applicationCommandTypes[options.type] : options.type,
         options: options.options ? transformApplicationCommandOptions(options.options) : undefined
     }
 }
@@ -92,7 +92,7 @@ export function transformApplicationCommandOptions(options) {
     return options.map(option => {
         return {
             ...option,
-            type: applicationCommandOptionsTypes[option.type] || option.type,
+            type: typeof option.type === "string" ? applicationCommandOptionsTypes[option.type] : option.type,
             options: option.options ? transformApplicationCommandOptions(option.options) : undefined,
         }
     })
