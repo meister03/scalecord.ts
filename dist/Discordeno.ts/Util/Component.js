@@ -138,7 +138,9 @@ class Component {
         return this;
     }
     setValue(value) {
-        this.value = value;
+        if (value !== "" && value !== undefined) {
+            this.value = value;
+        }
         return this;
     }
     setPlaceholder(placeholder) {
@@ -231,7 +233,6 @@ class Component {
             // @ts-expect-error
             json.placeholder = this.placeholder;
         }
-        // @ts-expect-error
         if (this.type === 5) {
             // @ts-expect-error
             json.customId = this.custom_id;

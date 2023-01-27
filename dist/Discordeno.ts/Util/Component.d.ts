@@ -52,6 +52,6 @@ export declare class Component {
     setMaxLength(max_values: number): this;
     setComponents(...components: ActionRow[]): this;
     addComponents(...components: any[]): this;
-    toJSON(): InputTextComponent | ButtonComponent | SelectMenuComponent | ActionRow;
+    toJSON(): MessageComponentTypes;
 }
 //# sourceMappingURL=Component.d.ts.map

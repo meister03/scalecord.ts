@@ -40,7 +40,7 @@ export declare class Guild extends DestructObject {
     }): string | undefined;
     get createdTimestamp(): number;
 }
-export interface Guild extends Omit<RawGuild, 'roles' | 'emojis' | 'channels'> {
+export interface Guild extends Omit<RawGuild, 'roles' | 'emojis' | 'channels' | 'members'> {
 }
 export interface GuildOptions {
     roles?: CacheCollection<Role, RawRole>;

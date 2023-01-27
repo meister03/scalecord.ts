@@ -79,7 +79,7 @@ export class Guild extends DestructObject {
     }
 }
 
-export interface Guild extends Omit<RawGuild, 'roles' | 'emojis' | 'channels'> {
+export interface Guild extends Omit<RawGuild, 'roles' | 'emojis' | 'channels' | 'members'> {
 
 }
 

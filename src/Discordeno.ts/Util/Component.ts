@@ -143,7 +143,9 @@ export class Component {
     }
 
     setValue(value: string) {
-        this.value = value;
+        if(value !== "" && value !== undefined){
+            this.value = value;
+        }
         return this;
     }
 
@@ -184,8 +186,9 @@ export class Component {
 
     toJSON() {
         if (!this.type) throw new Error("Component must have a type");
+
         // @ts-expect-error
-        const json: ActionRow|ButtonComponent|SelectMenuComponent|InputTextComponent = {
+        const json: MessageComponentTypes = {
             type: this.type,
         };
         if (this.type === 1) {
@@ -246,7 +249,7 @@ export class Component {
             json.placeholder = this.placeholder;
             
         }
-        // @ts-expect-error
+
         if (this.type === 5) {
             // @ts-expect-error
             json.customId = this.custom_id;
